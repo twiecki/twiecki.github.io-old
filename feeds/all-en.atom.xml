@@ -7,7 +7,7 @@
 &lt;li&gt;How replacing the normal likelihood with Student T distribution produces robust regression.&lt;/li&gt;
 &lt;li&gt;How this can easily be done with &lt;code&gt;PyMC3&lt;/code&gt; and its new &lt;code&gt;glm&lt;/code&gt; module by passing a &lt;code&gt;family&lt;/code&gt; object.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This is the second part of a series on Bayesian GLMs (click &lt;a href="http://twiecki.github.io/blog/2013/09/12/bayesian-glms-1/"&gt;here for part I about linear regression&lt;/a&gt;). In this prior post I described how minimizing the squared distance of the regression line is the same as maximizing the likelihood of a Normal distribution with the mean coming from the regression line. This latter probabilistic expression allows us to easily formulate a Bayesian linear regression model.&lt;/p&gt;
+&lt;p&gt;This is the second part of a series on Bayesian GLMs (click &lt;a href="http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/"&gt;here for part I about linear regression&lt;/a&gt;). In this prior post I described how minimizing the squared distance of the regression line is the same as maximizing the likelihood of a Normal distribution with the mean coming from the regression line. This latter probabilistic expression allows us to easily formulate a Bayesian linear regression model.&lt;/p&gt;
 &lt;p&gt;This worked splendidly on simulated data. The problem with simulated data though is that it's, well, simulated. In the real world things tend to get more messy and assumptions like normality are easily violated by a few outliers.&lt;/p&gt;
 &lt;p&gt;Lets see what happens if we add some outliers to our simulated data from the last post.&lt;/p&gt;
 &lt;/div&gt;
