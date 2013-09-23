@@ -3712,11 +3712,13 @@ IiIi0ismVEREREQRYkJFREREFCEmVEREREQRYkJFREREFCEmVEREREQRYkJFREREFCEmVEREREQR
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We get the same posterior back as with <code>PyMC</code> which is encouraging. The autocorrelation is also lower (with a high number of walkers, looks worse with fewer walkers) although I expected it to be even lower as this is a big selling point for <code>emcee</code>.</p>
+<h2 id="hmc-vs-affine-invariant-ensemble-samplers">HMC vs Affine Invariant Ensemble samplers</h2>
+<p>I think HMC and Ensemble samplers are both relevant, albeit in different domains. Without having done any experiments, I expect HMC to do well for exponential family models with high dimensions and complex posteriors. Ensemble samplers can deal with non-differentiable, expensive to compute likelihood functions as they often appear in science. They can not escape the curse of dimensionality, however, as the size of the space grows exponentially but adding walkers only scales linear.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="future-directions">Future directions</h2>
 <ul>
-<li><code>emcee</code> could be included into <code>PyMC</code> as a <code>step-method</code> which would reduce the hackiness.</li>
+<li><code>emcee</code> could be included into <code>PyMC</code> as a <a href="https://pymcmc.readthedocs.org/en/jss-gp/extending.html#user-defined-step-methods">custom step method</a> which would reduce the hackiness.</li>
 <li>Parallelization: For me the biggest selling point for Ensemble Samplers is that they can be parallelized quite easily (something not possible for HMC). This helps especially with expensive likelihoods that can require simulation to evaluate. <code>emcee</code> already has support for this but the <code>lnprob</code> function must be pickable and <code>PyMC</code> models are not pickable. It is possible, however, to recreate a <code>PyMC</code> model in each process. This would be quite easy with this hack but doesn't seem as straight forward if <code>emcee</code> were integrated in <code>PyMC</code>.</li>
 </ul>
 </div>

@@ -2449,11 +2449,13 @@ IiIi0ismVEREREQRYkJFREREFCEmVEREREQRYkJFREREFCEmVEREREQRYkJFREREFCEmVEREREQR
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;We get the same posterior back as with &lt;code&gt;PyMC&lt;/code&gt; which is encouraging. The autocorrelation is also lower (with a high number of walkers, looks worse with fewer walkers) although I expected it to be even lower as this is a big selling point for &lt;code&gt;emcee&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="hmc-vs-affine-invariant-ensemble-samplers"&gt;HMC vs Affine Invariant Ensemble samplers&lt;/h2&gt;
+&lt;p&gt;I think HMC and Ensemble samplers are both relevant, albeit in different domains. Without having done any experiments, I expect HMC to do well for exponential family models with high dimensions and complex posteriors. Ensemble samplers can deal with non-differentiable, expensive to compute likelihood functions as they often appear in science. They can not escape the curse of dimensionality, however, as the size of the space grows exponentially but adding walkers only scales linear.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="future-directions"&gt;Future directions&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;emcee&lt;/code&gt; could be included into &lt;code&gt;PyMC&lt;/code&gt; as a &lt;code&gt;step-method&lt;/code&gt; which would reduce the hackiness.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;emcee&lt;/code&gt; could be included into &lt;code&gt;PyMC&lt;/code&gt; as a &lt;a href="https://pymcmc.readthedocs.org/en/jss-gp/extending.html#user-defined-step-methods"&gt;custom step method&lt;/a&gt; which would reduce the hackiness.&lt;/li&gt;
 &lt;li&gt;Parallelization: For me the biggest selling point for Ensemble Samplers is that they can be parallelized quite easily (something not possible for HMC). This helps especially with expensive likelihoods that can require simulation to evaluate. &lt;code&gt;emcee&lt;/code&gt; already has support for this but the &lt;code&gt;lnprob&lt;/code&gt; function must be pickable and &lt;code&gt;PyMC&lt;/code&gt; models are not pickable. It is possible, however, to recreate a &lt;code&gt;PyMC&lt;/code&gt; model in each process. This would be quite easy with this hack but doesn't seem as straight forward if &lt;code&gt;emcee&lt;/code&gt; were integrated in &lt;code&gt;PyMC&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
