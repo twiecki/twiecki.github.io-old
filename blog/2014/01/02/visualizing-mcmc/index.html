@@ -1781,12 +1781,6 @@ lower left corner is the <em>joint</em> posterior while the plot above shows
 the <em>trace</em> of the <em>marginal</em> posterior of the <code>intercept</code> while the
 right plot shows the trace of the <em>marginal</em> posterior of the <code>slope</code> parameter. Each
 point represents a sample drawn from the posterior. At 3 quarters of the way I added a thousand samples to show that they all sample from the posterior eventually.</p>
-<p>As you will see, there is quite some correlation between <code>intercept</code>
-and <code>slope</code> -- if we believe in a higher intercept we must also
-believe in a lower slope (which makes geometrical sense if you think
-how lines could fit through the point clouds). This often makes it
-difficult for the MCMC algorithm to converge (i.e. sample from the
-true posterior).</p>
 <h2>Metropolis-Hastings</h2>
 <p>First, lets see how our old-school Metropolis-Hastings (MH)
 performs. The code uses matplotlib's handy <code>FuncAnimation</code> (see
@@ -10158,12 +10152,19 @@ TGF2ZjUzLjIxLjE=
 </div>
 
 </div></p>
-<p>Unfortunately, not that well. The reason why nothing happens in the
-beginning is that MH proposes huge jumps that are not accepted because they
-are way outside the posterior. PyMC then tunes the proposal
-distribution so that smaller jumps are proposed. These smaller jumps
-however lead to the random-walk behavior you can see which makes
-sampling inefficient (for a good intuition about this "drunken walk", see <a href="http://healthyalgorithms.com/2010/03/12/a-useful-metaphor-for-explaining-mcmc/">here</a>).</p>
+<p>As you can see, there is quite some correlation between <code>intercept</code>
+and <code>slope</code> -- if we believe in a higher intercept we must also
+believe in a lower slope (which makes geometrical sense if you think
+how lines could fit through the point clouds). This often makes it
+difficult for the MCMC algorithm to converge (i.e. sample from the
+true posterior) as we wittness here.</p>
+<p>The reason MH does not do anything at first is that MH proposes huge
+jumps that are not accepted because they are way outside the
+posterior. PyMC then tunes the proposal distribution so that smaller
+jumps are proposed. These smaller jumps however lead to the
+random-walk behavior you can see which makes sampling inefficient (for
+a good intuition about this "drunken walk", see
+<a href="http://healthyalgorithms.com/2010/03/12/a-useful-metaphor-for-explaining-mcmc/">here</a>).</p>
 <h2>Slice sampling</h2>
 <p>Lets see how slice sampling fares.</p>
 <p>
