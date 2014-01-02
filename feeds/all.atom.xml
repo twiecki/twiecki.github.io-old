@@ -8399,8 +8399,8 @@ jumps are proposed. These smaller jumps however lead to the
 random-walk behavior you can see which makes sampling inefficient (for
 a good intuition about this "drunken walk", see
 &lt;a href="http://healthyalgorithms.com/2010/03/12/a-useful-metaphor-for-explaining-mcmc/"&gt;here&lt;/a&gt;).&lt;/p&gt;
-&lt;h2&gt;Slice sampling&lt;/h2&gt;
-&lt;p&gt;Lets see how slice sampling fares.&lt;/p&gt;
+&lt;h2&gt;Gibbs sampling&lt;/h2&gt;
+&lt;p&gt;Lets see how Gibbs sampling fares with a slice step method.&lt;/p&gt;
 &lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -22181,14 +22181,13 @@ AABMYXZmNTMuMjEuMQ==
 &lt;/div&gt;
 
 &lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;As you can see, slice sampling does a much better job. For one thing,
+&lt;p&gt;As you can see, Gibbs sampling does a much better job. For one thing,
 there are no rejections (which is a property of the algorithm). But
-there's still room for improvement. At the core, slice sampling is a
-Gibbs sampling method which means that it always updates one random
-variable at a time while keeping all others constant. This property
-leads to small steps being taken (imagine trying to move along a
-diagonal area on the chess board with a Rook) and makes sampling from
-correlated posteriors inefficient.&lt;/p&gt;
+there's still room for improvement. At the core, Gibbs sampling always
+updates one random variable at a time while keeping all others
+constant. This property leads to small steps being taken (imagine
+trying to move along a diagonal area on the chess board with a Rook)
+and makes sampling from correlated posteriors inefficient.&lt;/p&gt;
 &lt;h2&gt;NUTS (Hamiltonian Monte Carlo)&lt;/h2&gt;
 &lt;p&gt;NUTS on the other hand is a newer gradient-based sampler that operates
 on the joint posterior. Correlations are not a problem because this
