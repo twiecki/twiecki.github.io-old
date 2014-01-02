@@ -1779,8 +1779,7 @@ compressed. The notebook contains code for both.</p>
 I generated some data and estimate <code>intercept</code> and <code>slope</code>. In the
 lower left corner is the <em>joint</em> posterior while the plot above shows
 the <em>trace</em> of the <em>marginal</em> posterior of the <code>intercept</code> while the
-right plot shows the <em>marginal</em> posterior trace of the <code>slope</code> (think
-of these as a ticker that over time tracks one of the two axes). Each
+right plot shows the trace of the <em>marginal</em> posterior of the <code>slope</code> parameter. Each
 point represents a sample drawn from the posterior. At 3 quarters of the way I added a thousand samples to show that they all sample from the posterior eventually.</p>
 <p>As you will see, there is quite some correlation between <code>intercept</code>
 and <code>slope</code> -- if we believe in a higher intercept we must also
@@ -1788,6 +1787,7 @@ believe in a lower slope (which makes geometrical sense if you think
 how lines could fit through the point clouds). This often makes it
 difficult for the MCMC algorithm to converge (i.e. sample from the
 true posterior).</p>
+<h2>Metropolis-Hastings</h2>
 <p>First, lets see how our old-school Metropolis-Hastings (MH)
 performs. The code uses matplotlib's handy <code>FuncAnimation</code> (see
 <a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">here</a>
@@ -10159,10 +10159,12 @@ TGF2ZjUzLjIxLjE=
 
 </div></p>
 <p>Unfortunately, not that well. The reason why nothing happens in the
-beginning is that MH proposes jumps that are not accepted. PyMC then
-tunes the proposal distribution so that smaller jumps are
-proposed. These smaller jumps however lead to the random-walk behavior
-you can see which makes sampling inefficient.</p>
+beginning is that MH proposes huge jumps that are not accepted because they
+are way outside the posterior. PyMC then tunes the proposal
+distribution so that smaller jumps are proposed. These smaller jumps
+however lead to the random-walk behavior you can see which makes
+sampling inefficient (for a good intuition about this "drunken walk", see <a href="http://healthyalgorithms.com/2010/03/12/a-useful-metaphor-for-explaining-mcmc/">here</a>).</p>
+<h2>Slice sampling</h2>
 <p>Lets see how slice sampling fares.</p>
 <p>
 <div class="cell border-box-sizing code_cell vbox">
@@ -23950,8 +23952,9 @@ there's still room for improvement. At the core, slice sampling is a
 Gibbs sampling method which means that it always updates one random
 variable at a time while keeping all others constant. This property
 leads to small steps being taken (imagine trying to move along a
-diagonal area on the chess board with Rook) and makes sampling from
+diagonal area on the chess board with a Rook) and makes sampling from
 correlated posteriors inefficient.</p>
+<h2>NUTS (Hamiltonian Monte Carlo)</h2>
 <p>NUTS on the other hand is a newer gradient-based sampler that operates
 on the joint posterior. Correlations are not a problem because this
 sampler can actually move diagonally as well (more like the Queen). As
@@ -44624,7 +44627,7 @@ inference.</p>
 <p>I was initially setting out to get real-time plotting while sampling
 into PyMC. What I've shown here just creates an animation after
 sampling has finished. Unfortunately, I don't think it's currently
-possible to so in the IPython Notebook as it requires embedding of
+possible to do so in the IPython Notebook as it requires embedding of
 HTML for which we need the finished product. If anyone has an idea
 here that might be a very interesting extension.</p>
 <h2>Further reading</h2>
