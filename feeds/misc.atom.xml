@@ -4,6 +4,8 @@
 &lt;a href="https://github.com/jakevdp/JSAnimation"&gt;JSAnimation&lt;/a&gt; to create
 javascript animations of three MCMC sampling algorithms --
 &lt;a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm"&gt;Metropolis-Hastings&lt;/a&gt;, &lt;a href="https://en.wikipedia.org/wiki/Slice_sampling"&gt;slice sampling&lt;/a&gt; and &lt;a href="http://arxiv.org/abs/1111.4246"&gt;NUTS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Note that this post uses the html5 video tag which doesn't seem to
+work for Firefox but should work on any other browser.&lt;/p&gt;
 &lt;p&gt;I like visualizations because they provide a good intuition for how
 the samplers work and what problems they can run into.&lt;/p&gt;
 &lt;p&gt;You can download the full notebook &lt;a href="https://rawgithub.com/twiecki/WhileMyMCMCGentlySamples/master/content/downloads/notebooks/sample_animation.ipynb"&gt;here&lt;/a&gt; or &lt;a href="http://nbviewer.ipython.org/github/twiecki/WhileMyMCMCGentlySamples/blob/master/content/downloads/notebooks/sample_animation.ipynb?create=1"&gt;view it in your browser&lt;/a&gt;. Note that for this post I used
