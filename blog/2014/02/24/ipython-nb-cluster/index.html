@@ -1842,7 +1842,7 @@ In&nbsp;[]:
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">squared</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">map_sync</span><span class="p">(</span><span class="n">compute_func</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="s">&#39;output.pickle&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;output.pickle&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -1873,7 +1873,7 @@ In&nbsp;[]:
 
 <span class="kw">echo</span> <span class="st">&quot;Done!&quot;</span></code></pre>
 <p>The <code>$1</code> refers to the command line argument of the cluster script so that I can decide which IPyNB to run when I launch the job. That's the script, I now only need to copy the data and the IPyNB to the cluster and submit my job via:</p>
-<pre><code>sbatch submit_ipython_notebook.sh MyIPyNB.ipynb</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sbatch</span> submit_ipython_notebook.sh MyIPyNB.ipynb</code></pre>
 <p>(Other schedulers have different commands to submit jobs like <code>qsub</code>).</p>
 <p>What happens next is that <code>SLURM</code> will schedule my job in the queue. Once it gets started with access to 64 cores, the shell script is executed and launches <code>ipcontroller</code> and 64 instances of <code>ipengine</code> which automatically know how to connect and register to the controller. <code>checkipnb.py</code> then executes each cell in <code>MyIPyNB.ipynb</code> consecutively. The <code>%%px</code> cells will bring all the engines into the correct state while the <code>map_sync()</code> call distributes the work. Once the computation is done, the results are saved to the pickle output file which I can then copy back to my local setup to analyse.</p>
 <p>What is nice is that I never have to touch the cluster script again. I simply write an IPyNB that computes my analyses in parallel and if the computations become too big I can just copy them to the cluster and launch them there with minimal overhead.</p>
