@@ -1,5 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>While My MCMC Gently Samples</title><link href="http://twiecki.github.com/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>http://twiecki.github.com/</id><updated>2014-01-02T09:00:00-05:00</updated><entry><title>Animating MCMC with PyMC3 and Matplotlib</title><link href="http://twiecki.github.com/blog/2014/01/02/visualizing-mcmc/" rel="alternate"></link><updated>2014-01-02T09:00:00-05:00</updated><author><name>Thomas Wiecki</name></author><id>tag:twiecki.github.com,2014-01-02:blog/2014/01/02/visualizing-mcmc/</id><summary type="html">&lt;p&gt;Here's the deal: I used &lt;a href="https://github.com/pymc-devs/pymc"&gt;PyMC3&lt;/a&gt;,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>While My MCMC Gently Samples</title><link href="http://twiecki.github.com/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>http://twiecki.github.com/</id><updated>2014-02-24T09:00:00-05:00</updated><entry><title>Easily distributing a parallel IPython Notebook on a cluster</title><link href="http://twiecki.github.com/blog/2014/02/24/ipython-nb-cluster/" rel="alternate"></link><updated>2014-02-24T09:00:00-05:00</updated><author><name>Thomas Wiecki</name></author><id>tag:twiecki.github.com,2014-02-24:blog/2014/02/24/ipython-nb-cluster/</id><summary type="html">&lt;p&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Have you ever asked yourself: &amp;quot;Do I want to spend 2 days adjusting this analysis to run on the cluster and wait 2 days for the jobs to finish or do I just run it locally with no extra work and just wait a week.&amp;quot;&lt;/p&gt;
+&lt;p&gt;If so, this blog post might be of interest to you. If not, it might still be of interest -- what do I know about your interests? ;) Below I outline my process of running my analyses on the cluster with minimal recoding/adaptation.&lt;/p&gt;
+&lt;h2 id="problems-with-the-naive-common-approach"&gt;Problems with the naive (common) approach&lt;/h2&gt;
+&lt;p&gt;My main problems with moving my computations to the cluster have always been:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Tedious recoding of my scripts to parallelize them:&lt;/strong&gt; Most common cluster systems like SLURM or TORQUE require you to write a script that starts each parallel job in a single line. I saw many researchers then recode their analysis scripts to parse command line arguments and have hundreds of lines of various parameter values they want to run.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Difficult debugging:&lt;/strong&gt; I spent too many hours coding my clusterized code, copying them over, submitting a job, waiting for it to schedule, to only then find out that I had an obvious bug. The cycle of seeing the job to start is simply too long.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Non-pickable objects:&lt;/strong&gt; I'm sure everyone experimenting with parallel programming in Python stumbled over the problem that everything you want to distribute to your workers has to be pickable. Unfortunately, most things in Python are not pickable (no functions, no classes, no objects etc). &lt;code&gt;dill&lt;/code&gt; helps with that but in the end is also limited (see &lt;a href="http://matthewrocklin.com/blog/work/2013/12/05/Parallelism-and-Serialization/"&gt;here&lt;/a&gt; for a blog post discussing this issue).&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="desiderata-of-setup"&gt;Desiderata of setup&lt;/h2&gt;
+&lt;p&gt;If this sounds terrible, it's because it is! My ideal setup thus has the following properties:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;I can make sure everything worked correctly on my local setup first before moving it to the cluster.&lt;/li&gt;
+&lt;li&gt;Since I spend my time analysing data exclusively in the &lt;a href="http://ipython.org/notebook"&gt;IPython Notebook&lt;/a&gt; these days I don't want to switch to a script-based setting just so I can run the analyses on the cluster.&lt;/li&gt;
+&lt;li&gt;Finally, I don't want to be limited by what is pickable, so bringing my workers into the correct state should come with minimal extra-work.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="setting-up-the-ipython-notebook"&gt;Setting up the IPython Notebook&lt;/h2&gt;
+&lt;p&gt;We are going to use IPython parallel inside the IPython Notebook (IPyNB). The IPyNB allows me to launch multiple client workers (called engines) from the dashboard on my local machine. After I launched the engines, I can connect to them from the IPyNB via:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;parallel&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parallel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Client&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;view&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_balanced_view&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;This sets up a &lt;code&gt;view&lt;/code&gt; object (see the &lt;a href="http://ipython.org/ipython-doc/stable/parallel/parallel_intro.html"&gt;IPython parallel docs&lt;/a&gt; for more info) that allows us to distribute our jobs.&lt;/p&gt;
+&lt;p&gt;The next issue we solve is that of bringing the workers into the correct state without relying on &lt;code&gt;pickle&lt;/code&gt;. IPython has the nifty &lt;code&gt;%%px&lt;/code&gt; magic operator for that. What it does is that it executes the cell on all connected clients. If we add &lt;code&gt;--local&lt;/code&gt; it also executes it on the main node.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;px&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pickle&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyLongAssComputation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+    
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compute_func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MyLongAssComputation&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;This makes sure everyone has access to the necessary modules and any classes or functions I need to execute a job. Obviously this code makes no sense but it's supposed to demonstrate that you can basically set up anything you want on the nodes and refer to them. This fulfills desiderata #3.&lt;/p&gt;
+&lt;p&gt;Finally, we want to load any data and distribute it to the workers. This we execute only from the master node (so no magic prefix).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;squared&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;view&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map_sync&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;compute_func&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;pickle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dump&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;squared&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;output.pickle&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;In this local setup I can easily identify and debug my code. When I want to launch &lt;code&gt;pdb&lt;/code&gt; I can easily call the parallel function directly on the master to have full control. I can also easily edit the above code, re-execute the cell to update the workers and retry to distribute the jobs, fulfilling desiderata #1.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="executing-the-ipython-notebook-on-the-cluster"&gt;Executing the IPython Notebook on the cluster&lt;/h2&gt;
+&lt;p&gt;Once I made sure everything functions correctly on a smaller set of data I want to run the full, long job on the cluster going massively parallel. Most clusters run some scheduler that queues and distributes your job. The &lt;a href="https://www.ccv.brown.edu/technologies/computing"&gt;Brown cluster&lt;/a&gt; runs &lt;a href="https://computing.llnl.gov/linux/slurm/"&gt;&lt;code&gt;SLURM&lt;/code&gt;&lt;/a&gt; but others are configured in a similar way so it shouldn't be hard to adapt these scripts.&lt;/p&gt;
+&lt;p&gt;You have to write a script with some special comments that instruct the scheduler on how many cores you want (&lt;code&gt;-n&lt;/code&gt;), how long the job is supposed to run (&lt;code&gt;--time&lt;/code&gt;) etc:&lt;/p&gt;
+&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="co"&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class="co"&gt;#SBATCH -J ipython&lt;/span&gt;
+&lt;span class="co"&gt;#SBATCH -n 64&lt;/span&gt;
+&lt;span class="co"&gt;#SBATCH --time=48:00:00&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next in our script we want to launch the IPython parallel cluster. First, we launch the IPython controller which distributes the jobs. We also specify that it should accept connection from external IPs (&lt;code&gt;--ip='*'&lt;/code&gt;) instead of being restricted to &lt;code&gt;localhost&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;echo&lt;/span&gt; &lt;span class="st"&gt;&amp;quot;Launching controller&amp;quot;&lt;/span&gt;
+&lt;span class="kw"&gt;ipcontroller&lt;/span&gt; --ip=&lt;span class="st"&gt;&amp;#39;*&amp;#39;&lt;/span&gt; &lt;span class="kw"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="kw"&gt;sleep&lt;/span&gt; 10&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We next need to launch our engines. Most schedulers have a command to distribute a shell command on all your reserved nodes. &lt;code&gt;SLURM&lt;/code&gt; has &lt;code&gt;srun&lt;/code&gt; which will execute the command 64 times (as specified above). You could also use &lt;code&gt;mpirun&lt;/code&gt; here.&lt;/p&gt;
+&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;srun&lt;/span&gt; ipengine &lt;span class="kw"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="kw"&gt;sleep&lt;/span&gt; 25&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, we want to run our IPyNB on the cluster. For this we'd like to just execute an IPyNB like a Python script. Luckily, there are some scripts that do exactly that. For our purposes, &lt;a href="https://gist.github.com/minrk/2620876"&gt;&lt;code&gt;checkipnb.py&lt;/code&gt;&lt;/a&gt; does the job. You'll have to download it and save it to the directory.&lt;/p&gt;
+&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;echo&lt;/span&gt; &lt;span class="st"&gt;&amp;quot;Launching job&amp;quot;&lt;/span&gt;
+&lt;span class="kw"&gt;python&lt;/span&gt; checkipnb.py &lt;span class="ot"&gt;$1&lt;/span&gt;
+
+&lt;span class="kw"&gt;echo&lt;/span&gt; &lt;span class="st"&gt;&amp;quot;Done!&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;$1&lt;/code&gt; refers to the command line argument of the cluster script so that I can decide which IPyNB to run when I launch the job. That's the script, I now only need to copy the data and the IPyNB to the cluster and submit my job via:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sbatch submit_ipython_notebook.sh MyIPyNB.ipynb&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(Other schedulers have different commands to submit jobs like &lt;code&gt;qsub&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;What happens next is that &lt;code&gt;SLURM&lt;/code&gt; will schedule my job in the queue. Once it gets started with access to 64 cores, the shell script is executed and launches &lt;code&gt;ipcontroller&lt;/code&gt; and 64 instances of &lt;code&gt;ipengine&lt;/code&gt; which automatically know how to connect and register to the controller. &lt;code&gt;checkipnb.py&lt;/code&gt; then executes each cell in &lt;code&gt;MyIPyNB.ipynb&lt;/code&gt; consecutively. The &lt;code&gt;%%px&lt;/code&gt; cells will bring all the engines into the correct state while the &lt;code&gt;map_sync()&lt;/code&gt; call distributes the work. Once the computation is done, the results are saved to the pickle output file which I can then copy back to my local setup to analyse.&lt;/p&gt;
+&lt;p&gt;What is nice is that I never have to touch the cluster script again. I simply write an IPyNB that computes my analyses in parallel and if the computations become too big I can just copy them to the cluster and launch them there with minimal overhead.&lt;/p&gt;
+&lt;p&gt;The full script is as follows (note that I'm running a local &lt;a href="http://continuum.io/downloads"&gt;Anaconda&lt;/a&gt; install; this really helps as you normally don't have admin access on the cluster and don't want to have to keep asking them to install custom packages):&lt;/p&gt;
+&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="co"&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class="co"&gt;#SBATCH -J ipython&lt;/span&gt;
+&lt;span class="co"&gt;#SBATCH -n 64&lt;/span&gt;
+&lt;span class="co"&gt;#SBATCH --time=48:00:00&lt;/span&gt;
+
+&lt;span class="kw"&gt;echo&lt;/span&gt; &lt;span class="st"&gt;&amp;quot;Launching controller&amp;quot;&lt;/span&gt;
+&lt;span class="ot"&gt;$HOME&lt;/span&gt;&lt;span class="kw"&gt;/anaconda/bin/ipcontroller&lt;/span&gt; --ip=&lt;span class="st"&gt;&amp;#39;*&amp;#39;&lt;/span&gt; &lt;span class="kw"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="kw"&gt;sleep&lt;/span&gt; 10
+
+&lt;span class="kw"&gt;echo&lt;/span&gt; &lt;span class="st"&gt;&amp;quot;Launching engines&amp;quot;&lt;/span&gt;
+&lt;span class="kw"&gt;srun&lt;/span&gt; &lt;span class="ot"&gt;$HOME&lt;/span&gt;/anaconda/bin/ipengine &lt;span class="kw"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="kw"&gt;sleep&lt;/span&gt; 25
+
+&lt;span class="kw"&gt;echo&lt;/span&gt; &lt;span class="st"&gt;&amp;quot;Launching job&amp;quot;&lt;/span&gt;
+&lt;span class="ot"&gt;$HOME&lt;/span&gt;&lt;span class="kw"&gt;/anaconda/bin/python&lt;/span&gt; checkipnb.py&lt;span class="ot"&gt;$1&lt;/span&gt;
+
+&lt;span class="kw"&gt;echo&lt;/span&gt; &lt;span class="st"&gt;&amp;quot;Done!&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+&lt;p&gt;In this post I demonstrated and explained my cluster setup. The overhead of moving my computations to the cluster is greatly reduced which is what I care most about. I also don't have to route around the problem of pickling and I never have to leave the IPython Notebook.&lt;/p&gt;
+&lt;p&gt;I uploaded the scripts to a &lt;a href="https://github.com/twiecki/ipython_nb_cluster"&gt;GitHub repository&lt;/a&gt;. Perhaps others want to contribute launching scripts for other schedulers. You can find the IPyNB used to write this blog post &lt;a href="https://github.com/twiecki/WhileMyMCMCGentlySamples/blob/master/content/downloads/notebooks/ipython_parallel_cluster.ipynb"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Another interesting project seems to be &lt;a href="https://github.com/roryk/ipython-cluster-helper"&gt;ipython-cluster-helper&lt;/a&gt; which has a different approach (it doesn't launch an IPyNB) but still looks to greatly reduce the burden of cluster computing.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href="http://research.clps.brown.edu/cchatham/"&gt;Chris Chatham&lt;/a&gt; for proof-reading and valuable input.&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="computation"></category></entry><entry><title>Animating MCMC with PyMC3 and Matplotlib</title><link href="http://twiecki.github.com/blog/2014/01/02/visualizing-mcmc/" rel="alternate"></link><updated>2014-01-02T09:00:00-05:00</updated><author><name>Thomas Wiecki</name></author><id>tag:twiecki.github.com,2014-01-02:blog/2014/01/02/visualizing-mcmc/</id><summary type="html">&lt;p&gt;Here's the deal: I used &lt;a href="https://github.com/pymc-devs/pymc"&gt;PyMC3&lt;/a&gt;,
 &lt;a href="http://matplotlib.org/"&gt;matplotlib&lt;/a&gt;, and &lt;a href="http://jakevdp.github.io/"&gt;Jake Vanderplas'&lt;/a&gt;
 &lt;a href="https://github.com/jakevdp/JSAnimation"&gt;JSAnimation&lt;/a&gt; to create
 javascript animations of three MCMC sampling algorithms --
