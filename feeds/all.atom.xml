@@ -134,7 +134,12 @@ In&amp;nbsp;[]:
 &lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
 &lt;p&gt;In this post I demonstrated and explained my cluster setup. The overhead of moving my computations to the cluster is greatly reduced which is what I care most about. I also don't have to route around the problem of pickling and I never have to leave the IPython Notebook.&lt;/p&gt;
 &lt;p&gt;I uploaded the scripts to a &lt;a href="https://github.com/twiecki/ipython_nb_cluster"&gt;GitHub repository&lt;/a&gt;. Perhaps others want to contribute launching scripts for other schedulers. You can find the IPyNB used to write this blog post &lt;a href="https://github.com/twiecki/WhileMyMCMCGentlySamples/blob/master/content/downloads/notebooks/ipython_parallel_cluster.ipynb"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Another interesting project seems to be &lt;a href="https://github.com/roryk/ipython-cluster-helper"&gt;ipython-cluster-helper&lt;/a&gt; which has a different approach (it doesn't launch an IPyNB) but still looks to greatly reduce the burden of cluster computing.&lt;/p&gt;
+&lt;p&gt;Other interesting projects that make parallelization easier:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/roryk/ipython-cluster-helper"&gt;ipython-cluster-helper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/uqfoundation/pyina"&gt;pyina&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/uqfoundation/pathos"&gt;pathos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Thanks to &lt;a href="http://research.clps.brown.edu/cchatham/"&gt;Chris Chatham&lt;/a&gt; for proof-reading and valuable input.&lt;/p&gt;
 &lt;/div&gt;&lt;/p&gt;</summary><category term="computation"></category></entry><entry><title>Animating MCMC with PyMC3 and Matplotlib</title><link href="http://twiecki.github.com/blog/2014/01/02/visualizing-mcmc/" rel="alternate"></link><updated>2014-01-02T09:00:00-05:00</updated><author><name>Thomas Wiecki</name></author><id>tag:twiecki.github.com,2014-01-02:blog/2014/01/02/visualizing-mcmc/</id><summary type="html">&lt;p&gt;Here's the deal: I used &lt;a href="https://github.com/pymc-devs/pymc"&gt;PyMC3&lt;/a&gt;,
 &lt;a href="http://matplotlib.org/"&gt;matplotlib&lt;/a&gt;, and &lt;a href="http://jakevdp.github.io/"&gt;Jake Vanderplas'&lt;/a&gt;
