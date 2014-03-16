@@ -1876,7 +1876,7 @@ In&nbsp;[]:
 <p>The <code>$1</code> refers to the command line argument of the cluster script so that I can decide which IPyNB to run when I launch the job. That's the script, I now only need to copy the data and the IPyNB to the cluster and submit my job via:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sbatch</span> submit_ipython_notebook.sh MyIPyNB.ipynb</code></pre>
 <p>(Other schedulers have different commands to submit jobs like <code>qsub</code>).</p>
-<p>What happens next is that <code>SLURM</code> will schedule my job in the queue. Once it gets started with access to 64 cores, the shell script is executed and launches <code>ipcontroller</code> and 64 instances of <code>ipengine</code> which automatically know how to connect and register to the controller. <code>checkipnb.py</code> then executes each cell in <code>MyIPyNB.ipynb</code> consecutively. The <code>%%px</code> cells will bring all the engines into the correct state while the <code>map_sync()</code> call distributes the work. Once the computation is done, the results are saved to the pickle output file which I can then copy back to my local setup to analyse.</p>
+<p>What happens next is that <code>SLURM</code> will schedule my job in the queue. Once it gets started with access to 64 cores, the shell script is executed and launches <code>ipcontroller</code> and 64 instances of <code>ipengine</code> which automatically know how to connect and register to the controller. <code>checkipnb.py</code> then executes each cell in <code>MyIPyNB.ipynb</code> consecutively. The <code>%%px</code> cells will bring all the engines into the correct state while the <code>map_sync()</code> call distributes the work. Once the computation is done, the results are saved to the pickle output file which I can then copy back (using <code>scp</code>) to my local setup to analyse.</p>
 <p>What is nice is that I never have to touch the cluster script again. I simply write an IPyNB that computes my analyses in parallel and if the computations become too big I can just copy them to the cluster and launch them there with minimal overhead.</p>
 <p>The full script is as follows (note that I'm running a local <a href="http://continuum.io/downloads">Anaconda</a> install; this really helps as you normally don't have admin access on the cluster and don't want to have to keep asking them to install custom packages):</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/sh</span>
@@ -1930,6 +1930,9 @@ In&nbsp;[]:
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://twiecki.github.com/blog/2014/03/17/bayesian-glms-3/">The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3</a>
+      </li>
+      <li class="post">
           <a href="http://twiecki.github.com/blog/2014/02/24/ipython-nb-cluster/">Easily distributing a parallel IPython Notebook on a cluster</a>
       </li>
       <li class="post">
@@ -1940,9 +1943,6 @@ In&nbsp;[]:
       </li>
       <li class="post">
           <a href="http://twiecki.github.com/blog/2013/09/23/emcee-pymc/">Hammer time: Nailing the emcee ensemble sampler onto PyMC</a>
-      </li>
-      <li class="post">
-          <a href="http://twiecki.github.com/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Bayesian Robust Regression in PyMC3</a>
       </li>
     </ul>
   </section>
