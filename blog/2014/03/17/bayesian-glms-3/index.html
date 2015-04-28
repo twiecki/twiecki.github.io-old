@@ -1769,6 +1769,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Authors: Danne Elbers, Thomas Wiecki</p>
 <p>Today&#39;s blog post is co-written by <a href="http://www.linkedin.com/pub/danne-elbers/69/3a2/7ba">Danne Elbers</a> who is doing her masters thesis with me on computational psychiatry using Bayesian modeling. This post also borrows heavily from a <a href="http://nbviewer.ipython.org/github/fonnesbeck/multilevel_modeling/blob/master/multilevel_modeling.ipynb?create=1">Notebook</a> by <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/ChrisFonnesbeck">Chris Fonnesbeck</a>.</p>
 <p>The power of Bayesian modelling really clicked for me when I was first introduced to hierarchical modelling. In this blog post we will:</p>
 <ul>
@@ -1803,17 +1804,17 @@ Here we&#39;ll investigate this differences and try to make predictions of radon
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[1]:
+In&nbsp;[2]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pymc</span> <span class="kn">as</span> <span class="nn">pm</span> 
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span> 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;radon.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;data/radon.csv&#39;</span><span class="p">)</span>
 
 <span class="n">county_names</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">county</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 <span class="n">county_idx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;county_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -1837,7 +1838,7 @@ In&nbsp;[1]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[3]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1853,7 +1854,7 @@ In&nbsp;[2]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[2]:</div>
+    Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -1899,7 +1900,6 @@ In&nbsp;[2]:
     </tr>
   </tbody>
 </table>
-<p>5 rows × 3 columns</p>
 </div>
 </div>
 
@@ -1960,7 +1960,7 @@ $$\beta_{c} \sim \mathcal{N}(\mu_{\beta}, \sigma_{\beta}^2)$$</p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[3]:
+In&nbsp;[None]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1995,23 +1995,6 @@ In&nbsp;[3]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>
-/home/wiecki/envs/pymc3/local/lib/python2.7/site-packages/theano/scan_module/scan_perform_ext.py:85: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility
-  from scan_perform.scan_perform import *
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -7653,7 +7636,7 @@ SUVORK5CYII=
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[*]:
+In&nbsp;[None]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
