@@ -14982,9 +14982,7 @@ DofD4XA4cc//D2xk31S2+dVkAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">izip</span>
-
-<span class="c1"># Set back to original data to retrain</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set back to original data to retrain</span>
 <span class="n">ann_input</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="n">ann_output</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">Y_train</span><span class="p">)</span>
 
@@ -15001,7 +14999,7 @@ DofD4XA4cc//D2xk31S2+dVkAAAAAElFTkSuQmCC
         <span class="n">ixs</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
         <span class="k">yield</span> <span class="n">data</span><span class="p">[</span><span class="n">ixs</span><span class="p">]</span>
 
-<span class="n">minibatches</span> <span class="o">=</span> <span class="n">izip</span><span class="p">(</span>
+<span class="n">minibatches</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
     <span class="n">create_minibatch</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> 
     <span class="n">create_minibatch</span><span class="p">(</span><span class="n">Y_train</span><span class="p">),</span>
 <span class="p">)</span>

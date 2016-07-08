@@ -12107,9 +12107,7 @@ jQuery(document).ready(function($) {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">izip</span>
-
-<span class="c1"># Tensors and RV that will be using mini-batches</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Tensors and RV that will be using mini-batches</span>
 <span class="n">minibatch_tensors</span> <span class="o">=</span> <span class="p">[</span><span class="n">input_var</span><span class="p">,</span> <span class="n">target_var</span><span class="p">]</span>
 
 <span class="c1"># Generator that returns mini-batches in each iteration</span>
@@ -12122,7 +12120,7 @@ jQuery(document).ready(function($) {
         <span class="n">ixs</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">batchsize</span><span class="p">)</span>
         <span class="k">yield</span> <span class="n">data</span><span class="p">[</span><span class="n">ixs</span><span class="p">]</span>
 
-<span class="n">minibatches</span> <span class="o">=</span> <span class="n">izip</span><span class="p">(</span>
+<span class="n">minibatches</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
     <span class="n">create_minibatch</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
     <span class="n">create_minibatch</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
 <span class="p">)</span>
@@ -16815,6 +16813,7 @@ RU5ErkJggg==
 <h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p>By bridging <code>Lasagne</code> and <code>PyMC3</code> and by using mini-batch ADVI to train a Bayesian Neural Network on a decently sized and complex data set (MNIST) we took a big step towards practical Bayesian Deep Learning on real-world problems.</p>
 <p>Kudos to the <code>Lasagne</code> developers for designing their API to make it trivial to integrate for this unforseen application. They were also very helpful and forthcoming in getting this to work.</p>
 <p>Finally, I also think this shows the benefits of <code>PyMC3</code>. By relying on a commonly used language (Python) and abstracting the computational backend (<code>Theano</code>) we were able to quite easily leverage the power of that ecosystem and use <code>PyMC3</code> in a manner that was never thought about when creating it. I look forward to extending it to new domains.</p>
+<p>This blog post was written in a Jupyter Notebook. You can get access the notebook <a href="https://github.com/twiecki/twiecki.github.io/blob/master/downloads/notebooks/bayesian_neural_network_lasagne.ipynb">here</a> and <a href="https://twitter.com/twiecki">follow me on Twitter</a> to stay up to date.</p>
 
 </div>
 </div>
