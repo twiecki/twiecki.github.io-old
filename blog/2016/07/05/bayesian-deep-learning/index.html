@@ -7,7 +7,7 @@
   <title>Bayesian Deep Learning Part II: Bridging PyMC3 and Lasagne to build a Hierarchical Neural Network</title>
   <meta name="author" content="Thomas Wiecki">
 
-  <link href="https://twiecki.github.io/atom.xml" type="application/atom+xml" rel="alternate"
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
         title="While My MCMC Gently Samples Atom Feed" />
 
     
@@ -11812,7 +11812,7 @@ jQuery(document).ready(function($) {
     <h2>Bayesian modeling, Computational Psychiatry, and Python</h2>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="https://twiecki.github.io/atom.xml" rel="subscribe-atom">Atom</a></li>
+  <li><a href="/atom.xml" rel="subscribe-atom">Atom</a></li>
 </ul>
 
 
@@ -11866,21 +11866,21 @@ jQuery(document).ready(function($) {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
-<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="k">as</span> <span class="nn">T</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="kn">as</span> <span class="nn">T</span>
 <span class="kn">import</span> <span class="nn">theano</span>
 
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">mode</span><span class="p">,</span> <span class="n">chisquare</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mode</span><span class="p">,</span> <span class="n">chisquare</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span>
 
 <span class="kn">import</span> <span class="nn">lasagne</span>
 </pre></div>
@@ -11905,17 +11905,17 @@ jQuery(document).ready(function($) {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">load_dataset</span><span class="p">():</span>
     <span class="c1"># We first define a download function, supporting both Python 2 and 3.</span>
     <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">urlretrieve</span>
+        <span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">urlretrieve</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">urlretrieve</span>
+        <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlretrieve</span>
 
     <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;http://yann.lecun.com/exdb/mnist/&#39;</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloading </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Downloading </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
         <span class="n">urlretrieve</span><span class="p">(</span><span class="n">source</span> <span class="o">+</span> <span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 
     <span class="c1"># We then define functions for loading MNIST images and labels.</span>
@@ -11959,7 +11959,7 @@ jQuery(document).ready(function($) {
     <span class="c1"># (It doesn&#39;t matter how we do this as long as we can read them again.)</span>
     <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading data...&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Loading data...&quot;</span><span class="p">)</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">()</span>
 </pre></div>
 
@@ -11987,7 +11987,7 @@ jQuery(document).ready(function($) {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Building a theano.shared variable with a subset of the data to make construction of the model faster.</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Building a theano.shared variable with a subset of the data to make construction of the model faster.</span>
 <span class="c1"># We will later switch that out, this is just a placeholder to get the dimensionality right.</span>
 <span class="n">input_var</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:</span><span class="mi">500</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
 <span class="n">target_var</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">y_train</span><span class="p">[:</span><span class="mi">500</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
@@ -12014,8 +12014,8 @@ jQuery(document).ready(function($) {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_ann</span><span class="p">(</span><span class="n">init</span><span class="p">):</span>
-    <span class="n">l_in</span> <span class="o">=</span> <span class="n">lasagne</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">InputLayer</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">build_ann</span><span class="p">(</span><span class="n">init</span><span class="p">):</span>
+    <span class="n">l_in</span> <span class="o">=</span> <span class="n">lasagne</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">InputLayer</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
                                      <span class="n">input_var</span><span class="o">=</span><span class="n">input_var</span><span class="p">)</span>
 
     <span class="c1"># Add a fully-connected layer of 800 units, using the linear rectifier, and</span>
@@ -12076,7 +12076,7 @@ jQuery(document).ready(function($) {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">GaussWeights</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">GaussWeights</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
@@ -12107,7 +12107,7 @@ jQuery(document).ready(function($) {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Tensors and RV that will be using mini-batches</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Tensors and RV that will be using mini-batches</span>
 <span class="n">minibatch_tensors</span> <span class="o">=</span> <span class="p">[</span><span class="n">input_var</span><span class="p">,</span> <span class="n">target_var</span><span class="p">]</span>
 
 <span class="c1"># Generator that returns mini-batches in each iteration</span>
@@ -12115,7 +12115,7 @@ jQuery(document).ready(function($) {
     
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">start_idx</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="c1"># Return random data samples of set size batchsize each iteration</span>
         <span class="n">ixs</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">batchsize</span><span class="p">)</span>
         <span class="k">yield</span> <span class="n">data</span><span class="p">[</span><span class="n">ixs</span><span class="p">]</span>
@@ -12135,7 +12135,7 @@ jQuery(document).ready(function($) {
     <span class="n">v_params</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">variational</span><span class="o">.</span><span class="n">advi_minibatch</span><span class="p">(</span>
         <span class="n">n</span><span class="o">=</span><span class="n">advi_iters</span><span class="p">,</span> <span class="n">minibatch_tensors</span><span class="o">=</span><span class="n">minibatch_tensors</span><span class="p">,</span> 
         <span class="n">minibatch_RVs</span><span class="o">=</span><span class="p">[</span><span class="n">likelihood</span><span class="p">],</span> <span class="n">minibatches</span><span class="o">=</span><span class="n">minibatches</span><span class="p">,</span> 
-        <span class="n">total_size</span><span class="o">=</span><span class="n">total_size</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1.0</span>
+        <span class="n">total_size</span><span class="o">=</span><span class="n">total_size</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1.0</span>
     <span class="p">)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">variational</span><span class="o">.</span><span class="n">sample_vp</span><span class="p">(</span><span class="n">v_params</span><span class="p">,</span> <span class="n">draws</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     
@@ -12169,7 +12169,7 @@ jQuery(document).ready(function($) {
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">neural_network</span><span class="p">:</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">neural_network</span><span class="p">:</span>
     <span class="n">likelihood</span> <span class="o">=</span> <span class="n">build_ann</span><span class="p">(</span><span class="n">GaussWeights</span><span class="p">())</span>
     <span class="n">v_params</span><span class="p">,</span> <span class="n">trace</span><span class="p">,</span> <span class="n">ppc</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">run_advi</span><span class="p">(</span><span class="n">likelihood</span><span class="p">)</span>
 </pre></div>
@@ -12218,7 +12218,7 @@ Finished [100%]: Average ELBO = -104222.88
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v_params</span><span class="o">.</span><span class="n">elbo_vals</span><span class="p">[</span><span class="mi">10000</span><span class="p">:])</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v_params</span><span class="o">.</span><span class="n">elbo_vals</span><span class="p">[</span><span class="mi">10000</span><span class="p">:])</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
 </pre></div>
 
@@ -12518,7 +12518,7 @@ IBJCCOFQEoiEEEI4lAQiIYQQDiWBSAghhEP9PzsM847pfMR+AAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12693,7 +12693,7 @@ xORMRKRBTM5ERBrE5ExEpEFMzkREGsTkTESkQUzOREQa9P8AFSafUfacR3oAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on test data = </span><span class="si">{}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on test data = {}%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12740,7 +12740,7 @@ xORMRKRBTM5ERBrE5ExEpEFMzkREGsTkTESkQUzOREQa9P8AFSafUfacR3oAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">GaussWeightsHierarchicalRegularization</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">GaussWeightsHierarchicalRegularization</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
@@ -12763,7 +12763,7 @@ xORMRKRBTM5ERBrE5ExEpEFMzkREGsTkTESkQUzOREQa9P8AFSafUfacR3oAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">neural_network_hier</span><span class="p">:</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">neural_network_hier</span><span class="p">:</span>
     <span class="n">likelihood</span> <span class="o">=</span> <span class="n">build_ann</span><span class="p">(</span><span class="n">GaussWeightsHierarchicalRegularization</span><span class="p">())</span>
     <span class="n">v_params</span><span class="p">,</span> <span class="n">trace</span><span class="p">,</span> <span class="n">ppc</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">run_advi</span><span class="p">(</span><span class="n">likelihood</span><span class="p">)</span>
 </pre></div>
@@ -12778,7 +12778,7 @@ xORMRKRBTM5ERBrE5ExEpEFMzkREGsTkTESkQUzOREQa9P8AFSafUfacR3oAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on test data = </span><span class="si">{}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on test data = {}%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12815,7 +12815,7 @@ xORMRKRBTM5ERBrE5ExEpEFMzkREGsTkTESkQUzOREQa9P8AFSafUfacR3oAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;reg_hyper1&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper2&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper3&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper4&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper5&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper6&#39;</span><span class="p">]);</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;reg_hyper1&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper2&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper3&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper4&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper5&#39;</span><span class="p">,</span> <span class="s1">&#39;reg_hyper6&#39;</span><span class="p">]);</span>
 </pre></div>
 
 </div>
@@ -16164,8 +16164,8 @@ CoVCoVAoFD9Qg4lCoVAoFAqFQqFQ/PD/AXtjL3Sit5/0AAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_ann_conv</span><span class="p">(</span><span class="n">init</span><span class="p">):</span>
-    <span class="n">network</span> <span class="o">=</span> <span class="n">lasagne</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">InputLayer</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">build_ann_conv</span><span class="p">(</span><span class="n">init</span><span class="p">):</span>
+    <span class="n">network</span> <span class="o">=</span> <span class="n">lasagne</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">InputLayer</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
                                         <span class="n">input_var</span><span class="o">=</span><span class="n">input_var</span><span class="p">)</span>
 
     <span class="n">network</span> <span class="o">=</span> <span class="n">lasagne</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2DLayer</span><span class="p">(</span>
@@ -16218,7 +16218,7 @@ CoVCoVAoFD9Qg4lCoVAoFAqFQqFQ/PD/AXtjL3Sit5/0AAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">neural_network_conv</span><span class="p">:</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">neural_network_conv</span><span class="p">:</span>
     <span class="n">likelihood</span> <span class="o">=</span> <span class="n">build_ann_conv</span><span class="p">(</span><span class="n">GaussWeights</span><span class="p">())</span>
     <span class="n">v_params</span><span class="p">,</span> <span class="n">trace</span><span class="p">,</span> <span class="n">ppc</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">run_advi</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">advi_iters</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
 </pre></div>
@@ -16257,7 +16257,7 @@ Finished [100%]: Average ELBO = -20334.15
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on test data = </span><span class="si">{}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on test data = {}%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -16295,7 +16295,7 @@ Finished [100%]: Average ELBO = -20334.15
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">miss_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_test</span> <span class="o">!=</span> <span class="n">y_pred</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">miss_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_test</span> <span class="o">!=</span> <span class="n">y_pred</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">corr_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
@@ -16309,7 +16309,7 @@ Finished [100%]: Average ELBO = -20334.15
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ppc</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ppc</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 
 </div>
@@ -16322,7 +16322,7 @@ Finished [100%]: Average ELBO = -20334.15
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chis</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">chisquare</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">chis</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">chisquare</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -16335,7 +16335,7 @@ Finished [100%]: Average ELBO = -20334.15
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">chis</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">miss_class</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">chis</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">miss_class</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Error&#39;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">chis</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">corr_class</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Correct&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
@@ -16869,7 +16869,7 @@ RU5ErkJggg==
 
   <section>
   <h1>Tags</h1>
-    <a href="http://twiecki.github.com/tag/bayesian-statistics.html">bayesian statistics</a>,    <a href="http://twiecki.github.com/tag/computation.html">computation</a>,    <a href="http://twiecki.github.com/tag/intro-datascience.html">intro datascience</a>,    <a href="http://twiecki.github.com/tag/bayesian-statistics-deep-learning-neural-networks.html">bayesian statistics deep learning neural networks</a>  </section>
+    <a href="http://twiecki.github.com/tag/intro-datascience.html">intro datascience</a>,    <a href="http://twiecki.github.com/tag/bayesian-statistics.html">bayesian statistics</a>,    <a href="http://twiecki.github.com/tag/computation.html">computation</a>,    <a href="http://twiecki.github.com/tag/bayesian-statistics-deep-learning-neural-networks.html">bayesian statistics deep learning neural networks</a>  </section>
 
 
 
