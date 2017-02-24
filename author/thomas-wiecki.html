@@ -3,6 +3,14 @@
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-1304639578718070",
+    enable_page_level_ads: true
+  });
+</script>
+
   <meta charset="utf-8">
   <title>While My MCMC Gently Samples - Articles by Thomas Wiecki</title>
   <meta name="author" content="Thomas Wiecki">
@@ -18,8 +26,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1114,7 +1122,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2543,7 +2550,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3034,7 +3040,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8765,6 +8770,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8967,8 +8975,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8991,6 +9005,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9127,6 +9151,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9216,6 +9243,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9260,6 +9290,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9556,6 +9589,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9576,11 +9610,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11251,7 +11280,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11563,6 +11592,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11576,6 +11606,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11847,7 +11880,7 @@ jQuery(document).ready(function($) {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>(c) 2017 by Thomas Wiecki</p>
-<p>Hierarchical models are underappreciated. Hierarchies exist in many data sets and modeling them appropriately adds a boat load of statistical power (the common metric of statistical power). I provided an introduction to hierarchical models in a <a href="http://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/">previous blog post: Best Of Both Worlds: Hierarchical Linear ...</a></p></div></div></div></p></div>
+<p>Hierarchical models are underappreciated. Hierarchies exist in many data sets and modeling them appropriately adds a boat load of statistical power (the common metric of statistical power). I provided an introduction to hierarchical models in a <a href="http://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/">previous blog post: Best Of Both Worlds: Hierarchical Linear …</a></p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2017/02/08/bayesian-hierchical-non-centered/">Read On &crarr;</a>
   </footer>
@@ -11876,7 +11909,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Recently, I blogged about <a href="http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">Bayesian Deep Learning with PyMC3</a> where I built a simple hand-coded Bayesian Neural Network and fit it on a toy data set. Today, we will build a more interesting model using <a href="https://lasagne.readthedocs.io/en/latest/">Lasagne</a>, a flexible <code>Theano</code> library for constructing various types of ...</p></div></div></div></p></div>
+<p>Recently, I blogged about <a href="http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">Bayesian Deep Learning with PyMC3</a> where I built a simple hand-coded Bayesian Neural Network and fit it on a toy data set. Today, we will build a more interesting model using <a href="https://lasagne.readthedocs.io/en/latest/">Lasagne</a>, a flexible <code>Theano</code> library for constructing various types of …</p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2016/07/05/bayesian-deep-learning/">Read On &crarr;</a>
   </footer>
@@ -11905,7 +11938,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Current-trends-in-Machine-Learning">Current trends in Machine Learning<a class="anchor-link" href="#Current-trends-in-Machine-Learning">&#182;</a></h2><p>There are currently three big trends in machine learning: <strong>Probabilistic Programming</strong>, <strong>Deep Learning</strong> and "<strong>Big Data</strong>". Inside of PP, a lot of innovation is in making things scale using <strong>Variational Inference</strong>. In ...</p></div></div></div></p></div>
+<h2 id="Current-trends-in-Machine-Learning">Current trends in Machine Learning<a class="anchor-link" href="#Current-trends-in-Machine-Learning">&#182;</a></h2><p>There are currently three big trends in machine learning: <strong>Probabilistic Programming</strong>, <strong>Deep Learning</strong> and "<strong>Big Data</strong>". Inside of PP, a lot of innovation is in making things scale using <strong>Variational Inference</strong>. In …</p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2016/06/01/bayesian-deep-learning/">Read On &crarr;</a>
   </footer>
@@ -11924,7 +11957,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>When I give talks about probabilistic programming and Bayesian statistics, I usually gloss over the details of how inference is actually performed, treating it as a black box essentially. The beauty of probabilistic programming is that you actually don't <em>have</em> to understand how the inference works in order to ...</p></div></div></div></p></div>
+<p>When I give talks about probabilistic programming and Bayesian statistics, I usually gloss over the details of how inference is actually performed, treating it as a black box essentially. The beauty of probabilistic programming is that you actually don't <em>have</em> to understand how the inference works in order to build …</p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2015/11/10/mcmc-sampling/">Read On &crarr;</a>
   </footer>
@@ -11944,7 +11977,7 @@ jQuery(document).ready(function($) {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Python has an extremely rich and healthy ecosystem of data science tools. Unfortunately, to outsiders this ecosystem can look like a jungle (cue snake joke). In this blog post I will provide a step-by-step guide to venturing into this PyData jungle.</p>
-<p>What's wrong with the many lists of PyData ...</p></div></div></div></p></div>
+<p>What's wrong with the many lists of PyData packages …</p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2014/11/18/python-for-data-science/">Read On &crarr;</a>
   </footer>
@@ -11963,9 +11996,17 @@ jQuery(document).ready(function($) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Authors: Danne Elbers, Thomas Wiecki</p>
-<p>Today's blog post is co-written by <a href="http://www.linkedin.com/pub/danne-elbers/69/3a2/7ba">Danne Elbers</a> who is doing her masters thesis with me on computational psychiatry using Bayesian modeling. This post also borrows heavily from a <a href="http://nbviewer.ipython.org/github/fonnesbeck/multilevel_modeling/blob/master/multilevel_modeling.ipynb?create=1">Notebook</a> by <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/ChrisFonnesbeck">Chris Fonnesbeck</a>.</p>
-<p>The power of Bayesian modelling really clicked for me when I ...</p></div></div></div></p></div>
+<h1 id="The-best-of-both-worlds:-Hierarchical-Linear-Regression-in-PyMC3">The best of both worlds: Hierarchical Linear Regression in PyMC3<a class="anchor-link" href="#The-best-of-both-worlds:-Hierarchical-Linear-Regression-in-PyMC3">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Today's blog post is co-written by my student <a href="http://www.linkedin.com/pub/danne-elbers/69/3a2/7ba">Danne Elbers</a> who is doing her masters thesis with me on computational psychiatry using Bayesian methods. This post also borrows heavily from a <a href="http://nbviewer.ipython.org/github/fonnesbeck/multilevel_modeling/blob/master/multilevel_modeling.ipynb?create=1">Notebook</a> by <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/ChrisFonnesbeck">Chris Fonnesbeck</a>.</p>
+<p>The power of Bayesian modelling …</p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2014/03/17/bayesian-glms-3/">Read On &crarr;</a>
   </footer>
@@ -11985,7 +12026,7 @@ jQuery(document).ready(function($) {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Have you ever asked yourself: "Do I want to spend 2 days adjusting this analysis to run on the cluster and wait 2 days for the jobs to finish or do I just run it locally with no extra work and just wait a week."</p>
-<p>If so, this blog post ...</p></div></div></div></p></div>
+<p>If so, this blog post …</p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2014/02/24/ipython-nb-cluster/">Read On &crarr;</a>
   </footer>
@@ -12004,7 +12045,8 @@ jQuery(document).ready(function($) {
 javascript animations of three MCMC sampling algorithms --
 <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings</a>, <a href="https://en.wikipedia.org/wiki/Slice_sampling">slice sampling</a> and <a href="http://arxiv.org/abs/1111.4246">NUTS</a>.</p>
 <p>Note that this post uses the html5 video tag which doesn't seem to
-work for Firefox but should work on any other browser ...</p></div>
+work for Firefox but should work on any other browser.</p>
+<p>I like …</p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2014/01/02/visualizing-mcmc/">Read On &crarr;</a>
   </footer>
@@ -12024,7 +12066,7 @@ work for Firefox but should work on any other browser ...</p></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>tl;dr: I hacked the <a href="http://dan.iel.fm/emcee/"><code>emcee</code>--The MCMC-Hammer</a> ensemble sampler to work on <code>PyMC</code> models.</p>
-<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">&#182;</a></h2><p><a href="http://pymc-devs.github.io/pymc/"><code>PyMC</code></a> is an awesome Python module to perform Bayesian inference. It allows for flexible model creation and has basic MCMC samplers like <a href="http://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings</a>. The upcoming PyMC3 will feature much fancier samplers like <a href="http://en.wikipedia.org/wiki/Hybrid_Monte_Carlo">Hamiltonian-Monte Carlo ...</a></p></div></div></div></p></div>
+<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">&#182;</a></h2><p><a href="http://pymc-devs.github.io/pymc/"><code>PyMC</code></a> is an awesome Python module to perform Bayesian inference. It allows for flexible model creation and has basic MCMC samplers like <a href="http://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings</a>. The upcoming PyMC3 will feature much fancier samplers like <a href="http://en.wikipedia.org/wiki/Hybrid_Monte_Carlo">Hamiltonian-Monte Carlo …</a></p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2013/09/23/emcee-pymc/">Read On &crarr;</a>
   </footer>
@@ -12048,7 +12090,7 @@ work for Firefox but should work on any other browser ...</p></div>
 <ol>
 <li><a href="http://twiecki.github.com/blog/2013/08/12/bayesian-glms-1/">The Inference Button: Bayesian GLMs made easy with PyMC3</a></li>
 <li><a href="http://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Robust Regression in PyMC3</a></li>
-<li><a href="http://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/">The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3 ...</a></li></ol></div></div></div></p></div>
+<li><a href="http://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/">The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3 …</a></li></ol></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://twiecki.github.com/blog/2013/08/27/bayesian-glms-2/">Read On &crarr;</a>
   </footer>
@@ -12090,7 +12132,7 @@ work for Firefox but should work on any other browser ...</p></div>
 
   <section>
   <h1>Tags</h1>
-    <a href="http://twiecki.github.com/tag/computation.html">computation</a>,    <a href="http://twiecki.github.com/tag/bayesian-statistics.html">bayesian statistics</a>,    <a href="http://twiecki.github.com/tag/bayesian-statistics-hierarchical.html">bayesian statistics hierarchical</a>,    <a href="http://twiecki.github.com/tag/intro-datascience.html">intro datascience</a>,    <a href="http://twiecki.github.com/tag/bayesian-statistics-deep-learning-neural-networks.html">bayesian statistics deep learning neural networks</a>  </section>
+    <a href="http://twiecki.github.com/tag/bayesian-statistics-hierarchical.html">bayesian statistics hierarchical</a>,    <a href="http://twiecki.github.com/tag/bayesian-statistics-deep-learning-neural-networks.html">bayesian statistics deep learning neural networks</a>,    <a href="http://twiecki.github.com/tag/bayesian-statistics.html">bayesian statistics</a>,    <a href="http://twiecki.github.com/tag/intro-datascience.html">intro datascience</a>,    <a href="http://twiecki.github.com/tag/computation.html">computation</a>  </section>
 
 
 
