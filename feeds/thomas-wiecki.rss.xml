@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>While My MCMC Gently Samples - Thomas Wiecki</title><link>http://twiecki.github.com/</link><description>Bayesian modeling, Computational Psychiatry, and Python</description><lastBuildDate>Wed, 08 Feb 2017 10:00:00 -0500</lastBuildDate><item><title>Why hierarchical models are awesome, tricky, and Bayesian</title><link>http://twiecki.github.com/blog/2017/02/08/bayesian-hierchical-non-centered/</link><description>&lt;p&gt;
+<rss version="2.0"><channel><title>While My MCMC Gently Samples - Thomas Wiecki</title><link>http://twiecki.github.com/</link><description>Bayesian modeling, Computational Psychiatry, and Python</description><lastBuildDate>Tue, 14 Mar 2017 10:00:00 -0400</lastBuildDate><item><title>Random-Walk Bayesian Deep Networks: Dealing with Non-Stationary Data</title><link>http://twiecki.github.com/blog/2017/03/14/random-walk-deep-net/</link><description>&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Download the NB: &lt;a href="https://github.com/twiecki/WhileMyMCMCGentlySamples/blob/master/content/downloads/notebooks/random_walk_deep_net.ipynb"&gt;https://github.com/twiecki/WhileMyMCMCGentlySamples/blob/master/content/downloads/notebooks/random_walk_deep_net.ipynb&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;(c) 2017 by &lt;a href="https://twitter/twiecki"&gt;Thomas Wiecki&lt;/a&gt; -- &lt;a href="https://quantopian.com"&gt;Quantopian Inc.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Most problems solved by Deep Learning are stationary. A cat is always a cat. The rules of Go have remained stable for 2,500 years, and will likely …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Thomas Wiecki</dc:creator><pubDate>Tue, 14 Mar 2017 10:00:00 -0400</pubDate><guid isPermaLink="false">tag:twiecki.github.com,2017-03-14:/blog/2017/03/14/random-walk-deep-net/</guid><category>bayesian statistics deep learning</category></item><item><title>Why hierarchical models are awesome, tricky, and Bayesian</title><link>http://twiecki.github.com/blog/2017/02/08/bayesian-hierchical-non-centered/</link><description>&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
