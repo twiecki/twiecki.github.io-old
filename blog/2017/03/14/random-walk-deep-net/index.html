@@ -11898,49 +11898,10 @@ $$
 \beta_t \sim \mathcal{N}(\beta_{t-1}, s^2)
 $$<p>So $\beta_t$ is allowed to only deviate a little bit (determined by the step-width $s$) form its previous value $\beta_{t-1}$. $s$ can be thought of as a stability parameter -- how fast is the world around you changing.</p>
 <p>Let's first generate some toy data and then implement this model in <code>PyMC3</code>. We will then use this same trick in a <a href="twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">Neural Network</a> with hidden layers.</p>
-<p>If you would like a more complete introduction to Bayesian Deep Learning, see my recent ODSC London talk. This blog post takes things one step further so definitely read further below.</p>
+<p>If you would like a more complete introduction to Bayesian Deep Learning, see <a href="https://www.youtube.com/watch?v=S9d5nupP_7Q">my recent ODSC London talk</a>. This blog post takes things one step further so definitely read further below.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">YouTubeVideo</span>
-<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;https://www.youtube.com/watch?v=S9d5nupP_7Q&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[27]:</div>
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-
-        <iframe
-            width="400"
-            height="300"
-            src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=S9d5nupP_7Q"
-            frameborder="0"
-            allowfullscreen
-        ></iframe>
-        
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -11977,7 +11938,7 @@ $$<p>So $\beta_t$ is allowed to only deviate a little bit (determined by the ste
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3>Generating data</h3><p>First, lets generate some toy data -- a simple binary classification problem that's linearly separable. To introduce the non-stationarity, we will rotate this data along the center across time.</p>
+<h3>Generating data</h3><p>First, lets generate some toy data -- a simple binary classification problem that's linearly separable. To introduce the non-stationarity, we will rotate this data along the center across time. Safely skip over the next few code cells.</p>
 
 </div>
 </div>
@@ -13730,9 +13691,9 @@ QogiRoZcCCGEKGJkyIUQQogiRoZcCCGEKGJkyIUQQogiRoZcCCGEKGJkyIUQQogi5v8AY2VcShu2
 <span class="n">n_hidden</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 
 <span class="c1"># Initialize random weights between each layer</span>
-<span class="n">init_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">init_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_hidden</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">init_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">init_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">theano</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">floatX</span><span class="p">)</span>
+<span class="n">init_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_hidden</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">theano</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">floatX</span><span class="p">)</span>
+<span class="n">init_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">theano</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">floatX</span><span class="p">)</span>
     
 <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">neural_network</span><span class="p">:</span>
     <span class="c1"># Weights from input to hidden layer</span>
