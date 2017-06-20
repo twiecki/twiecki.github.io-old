@@ -11671,8 +11671,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11683,9 +11685,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
 </style>
 
@@ -11782,7 +11786,7 @@ div.collapseheader {
 }
 </style>
 
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 <script type="text/javascript">
 init_mathjax = function() {
     if (window.MathJax) {
@@ -11872,8 +11876,7 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11888,14 +11891,13 @@ $$P(\theta|x) = \frac{P(x|\theta) P(\theta)}{P(x)}$$<p>We have $P(\theta|x)$, th
 $$P(x) = \int_\Theta P(x, \theta) \, \mathrm{d}\theta$$</p>
 <p>This is the key difficulty with Bayes formula -- while the formula looks innocent enough, for even slightly non-trivial models you just can't compute the posterior in a closed-form way.</p>
 <p>Now we might say "OK, if we can't solve something, could we try to approximate it? For example, if we could somehow draw samples from that posterior we can <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo approximate</a> it." Unfortunately, to directly sample from that distribution you not only have to solve Bayes formula, but also invert it, so that's even harder.</p>
-<p>Then we might say "Well, instead lets construct a Markov chain that has as an equilibrium distribution which matches our posterior distribution". I'm just kidding, most people wouldn't say that as it sounds bat-shit crazy. If you can't compute it, can't sample from it, then constructing that Markov chain with all these properties must be even harder.</p>
+<p>Then we might say "Well, instead let's construct an ergodic, reversible Markov chain that has as an equilibrium distribution which matches our posterior distribution". I'm just kidding, most people wouldn't say that as it sounds bat-shit crazy. If you can't compute it, can't sample from it, then constructing that Markov chain with all these properties must be even harder.</p>
 <p>The surprising insight though is that this is actually very easy and there exist a general class of algorithms that do this called <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo"><strong>Markov chain Monte Carlo</strong></a> (constructing a Markov chain to do Monte Carlo approximation).</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11903,8 +11905,7 @@ $$P(x) = \int_\Theta P(x, \theta) \, \mathrm{d}\theta$$</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11939,12 +11940,11 @@ $$P(x) = \int_\Theta P(x, \theta) \, \mathrm{d}\theta$$</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Lets generate some data: 100 points from a normal centered around zero. Our goal will be to estimate the posterior of the mean <code>mu</code> (we'll assume that we know the standard deviation to be 1).</p>
+<p>Lets generate some data: 20 points from a normal centered around zero. Our goal will be to estimate the posterior of the mean <code>mu</code> (we'll assume that we know the standard deviation to be 1).</p>
 
 </div>
 </div>
@@ -11981,7 +11981,9 @@ $$P(x) = \int_\Theta P(x, \theta) \, \mathrm{d}\theta$$</p>
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -12229,8 +12231,7 @@ TkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12270,7 +12271,9 @@ x|\mu \sim \text{Normal}(x; \mu, 1)$$<p>What is convenient, is that for this mod
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -12692,8 +12695,7 @@ AABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12702,8 +12704,7 @@ AABJRU5ErkJggg==
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12711,8 +12712,7 @@ AABJRU5ErkJggg==
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12822,7 +12822,7 @@ $$ \frac{\frac{P(x|\mu) P(\mu)}{P(x)}}{\frac{P(x|\mu_0) P(\mu_0)}{P(x)}} = \frac
     <span class="c1">#ax2.title(&#39;Proposal {}&#39;.format(&#39;accepted&#39; if accepted else &#39;rejected&#39;))</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">mu_proposal</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">mu_current</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
                  <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.</span><span class="p">))</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;likelihood(mu=</span><span class="si">%.2f</span><span class="s1">) = </span><span class="si">%.2f</span><span class="se">\n</span><span class="s1">likelihood(mu=</span><span class="si">%.2f</span><span class="s1">) = </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mu_current</span><span class="p">,</span> <span class="mi">1</span><span class="n">e14</span><span class="o">*</span><span class="n">likelihood_current</span><span class="p">,</span> <span class="n">mu_proposal</span><span class="p">,</span> <span class="mi">1</span><span class="n">e14</span><span class="o">*</span><span class="n">likelihood_proposal</span><span class="p">))</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;likelihood(mu=</span><span class="si">%.2f</span><span class="s1">) = </span><span class="si">%.2f</span><span class="se">\n</span><span class="s1">likelihood(mu=</span><span class="si">%.2f</span><span class="s1">) = </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mu_current</span><span class="p">,</span> <span class="mf">1e14</span><span class="o">*</span><span class="n">likelihood_current</span><span class="p">,</span> <span class="n">mu_proposal</span><span class="p">,</span> <span class="mf">1e14</span><span class="o">*</span><span class="n">likelihood_proposal</span><span class="p">))</span>
     
     <span class="c1"># Posterior</span>
     <span class="n">posterior_analytical</span> <span class="o">=</span> <span class="n">calc_posterior_analytical</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mu_prior_mu</span><span class="p">,</span> <span class="n">mu_prior_sd</span><span class="p">)</span>
@@ -12851,8 +12851,7 @@ $$ \frac{\frac{P(x|\mu) P(\mu)}{P(x)}}{\frac{P(x|\mu_0) P(\mu_0)}{P(x)}} = \frac
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12860,8 +12859,7 @@ $$ \frac{\frac{P(x|\mu) P(\mu)}{P(x)}}{\frac{P(x|\mu_0) P(\mu_0)}{P(x)}} = \frac
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12893,7 +12891,9 @@ $$ \frac{\frac{P(x|\mu) P(\mu)}{P(x)}}{\frac{P(x|\mu_0) P(\mu_0)}{P(x)}} = \frac
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -13881,7 +13881,9 @@ TkSuQmCC
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -14927,7 +14929,9 @@ iIiIiIiIiIj4OQ3wiIiIiIiIiIj4uf8HqddsR2jLL04AAAAASUVORK5CYII=
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -15966,7 +15970,9 @@ cYOHiIiIiIiIiGiE4wYPEREREREREdEI9z+4UhJ1G+sJDAAAAABJRU5ErkJggg==
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -17036,7 +17042,9 @@ yMpxgoeIiIiIiIiIyMr9P91HPY5NQ923AAAAAElFTkSuQmCC
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -18089,7 +18097,9 @@ HBs8RERERERERERmjg0eIiIiIiIiIiIz9/9YjlnPkjw4QgAAAABJRU5ErkJggg==
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -19152,7 +19162,9 @@ Ru7/Aby49GM6z4qfAAAAAElFTkSuQmCC
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -20206,7 +20218,9 @@ EVUAAAAASUVORK5CYII=
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -21273,8 +21287,7 @@ IiIiIiIiIjJxbPAQEREREREREZk4NniIiIiIiIiIiEzc/wMWPtBkxmTcDQAAAABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -21304,7 +21317,9 @@ IiIiIiIiIjJxbPAQEREREREREZk4NniIiIiIiIiIiEzc/wMWPtBkxmTcDQAAAABJRU5ErkJggg==
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -21886,8 +21901,7 @@ KSaYRERERCQpJphEREREJCkmmEREREQkKSaYRERERCSp/weR+3yK+AeuGAAAAABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -21920,7 +21934,9 @@ KSaYRERERCQpJphEREREJCkmmEREREQkKSaYRERERCSp/weR+3yK+AeuGAAAAABJRU5ErkJggg==
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -22476,8 +22492,7 @@ REQkRuVQRERERGL+Lxeb1uZzQSCgAAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -22486,8 +22501,7 @@ REQkRuVQRERERGL+Lxeb1uZzQSCgAAAAAElFTkSuQmCC
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -22495,8 +22509,7 @@ REQkRuVQRERERGL+Lxeb1uZzQSCgAAAAAElFTkSuQmCC
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -22525,7 +22538,9 @@ REQkRuVQRERERGL+Lxeb1uZzQSCgAAAAAElFTkSuQmCC
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -23082,8 +23097,7 @@ hBlKIiIiIvIIA0oiIiIi8ggDSiIiIiLyCANKIiIiIvIIA0oiIiIi8ggDSiIiIiLyyP8CGsXCylXN
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -23112,7 +23126,9 @@ hBlKIiIiIvIIA0oiIiIi8ggDSiIiIiLyCANKIiIiIvIIA0oiIiIi8ggDSiIiIiLyyP8CGsXCylXN
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -23836,8 +23852,7 @@ AAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -23865,7 +23880,9 @@ AAAAAElFTkSuQmCC
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -24434,8 +24451,7 @@ QRAEQRCEaUokaoIgCIIgCNPU/we683yDZWrLEgAAAABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -24468,7 +24484,9 @@ QRAEQRCEaUokaoIgCIIgCNPU/we683yDZWrLEgAAAABJRU5ErkJggg==
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -25071,8 +25089,7 @@ CCGEEEL0IyFRCCGEEEL0IyFRCCGEEEL0IyFRCCGEEEL08/8Dawfv0VvGtCAAAAAASUVORK5CYII=
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -25081,8 +25098,7 @@ CCGEEEL0IyFRCCGEEEL0IyFRCCGEEEL0IyFRCCGEEEL08/8Dawfv0VvGtCAAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -25121,7 +25137,9 @@ CCGEEEL0IyFRCCGEEEL0IyFRCCGEEEL0IyFRCCGEEEL08/8Dawfv0VvGtCAAAAAASUVORK5CYII=
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre> [-----------------100%-----------------] 15000 of 15000 complete in 1.7 sec</pre>
@@ -25129,7 +25147,9 @@ CCGEEEL0IyFRCCGEEEL0IyFRCCGEEEL0IyFRCCGEEEL08/8Dawfv0VvGtCAAAAAASUVORK5CYII=
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -25639,8 +25659,7 @@ SUEnhBBCCDHLSUEnhBBCCDHLSUEnhBBCCDHL/f8byzl/XuFIhAAAAABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
