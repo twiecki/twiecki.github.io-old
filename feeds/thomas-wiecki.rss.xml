@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>While My MCMC Gently Samples - Thomas Wiecki</title><link>http://twiecki.github.com/</link><description>Bayesian modeling, Computational Psychiatry, and Python</description><lastBuildDate>Tue, 14 Mar 2017 10:00:00 -0400</lastBuildDate><item><title>Random-Walk Bayesian Deep Networks: Dealing with Non-Stationary Data</title><link>http://twiecki.github.com/blog/2017/03/14/random-walk-deep-net/</link><description>&lt;p&gt;
+<rss version="2.0"><channel><title>While My MCMC Gently Samples - Thomas Wiecki</title><link>http://twiecki.github.com/</link><description>Bayesian modeling, Computational Psychiatry, and Python</description><lastBuildDate>Wed, 05 Jul 2017 10:00:00 -0400</lastBuildDate><item><title>What's new in PyMC3 3.1</title><link>http://twiecki.github.com/blog/2017/07/05/new-in-pymc3-31/</link><description>&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;We recently released &lt;a href="https://github.com/pymc-devs/pymc3/blob/master/RELEASE-NOTES.md#pymc3-31-june-23-2017"&gt;PyMC3 3.1&lt;/a&gt; after the first stable 3.0 release in January 2017. You can update either via &lt;code&gt;pip install pymc3&lt;/code&gt; or via &lt;code&gt;conda install -c conda-forge pymc3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A lot is happening in PyMC3-land. One thing I am particularily proud of is the developer community we have …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Thomas Wiecki</dc:creator><pubDate>Wed, 05 Jul 2017 10:00:00 -0400</pubDate><guid isPermaLink="false">tag:twiecki.github.com,2017-07-05:/blog/2017/07/05/new-in-pymc3-31/</guid><category>bayesian</category><category>statistics</category><category>pymc3</category></item><item><title>Random-Walk Bayesian Deep Networks: Dealing with Non-Stationary Data</title><link>http://twiecki.github.com/blog/2017/03/14/random-walk-deep-net/</link><description>&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
