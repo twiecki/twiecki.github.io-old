@@ -46,7 +46,28 @@
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Current-trends-in-Machine-Learning"&gt;Current trends in Machine Learning&lt;a class="anchor-link" href="#Current-trends-in-Machine-Learning"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are currently three big trends in machine learning: &lt;strong&gt;Probabilistic Programming&lt;/strong&gt;, &lt;strong&gt;Deep Learning&lt;/strong&gt; and "&lt;strong&gt;Big Data&lt;/strong&gt;". Inside of PP, a lot of innovation is in making things scale using &lt;strong&gt;Variational Inference&lt;/strong&gt;. In …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Thomas Wiecki</dc:creator><pubDate>Wed, 01 Jun 2016 10:00:00 -0400</pubDate><guid isPermaLink="false">tag:twiecki.github.com,2016-06-01:/blog/2016/06/01/bayesian-deep-learning/</guid><category>bayesian statistics deep learning neural networks</category></item><item><title>MCMC sampling for dummies</title><link>http://twiecki.github.com/blog/2015/11/10/mcmc-sampling/</link><description>&lt;p&gt;
+&lt;h2 id="Bayesian-Neural-Networks-in-PyMC3"&gt;Bayesian Neural Networks in PyMC3&lt;a class="anchor-link" href="#Bayesian-Neural-Networks-in-PyMC3"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Generating-data"&gt;Generating data&lt;a class="anchor-link" href="#Generating-data"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;First, lets generate some toy data -- a simple binary classification problem that's not linearly separable.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;matplotlib&lt;/span&gt; inline
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pymc3&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pm&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;theano.tensor&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;T&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;theano …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Thomas Wiecki</dc:creator><pubDate>Wed, 01 Jun 2016 10:00:00 -0400</pubDate><guid isPermaLink="false">tag:twiecki.github.com,2016-06-01:/blog/2016/06/01/bayesian-deep-learning/</guid><category>bayesian statistics deep learning neural networks</category></item><item><title>MCMC sampling for dummies</title><link>http://twiecki.github.com/blog/2015/11/10/mcmc-sampling/</link><description>&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
