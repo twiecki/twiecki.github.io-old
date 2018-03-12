@@ -11786,26 +11786,26 @@ div.collapseheader {
 }
 </style>
 
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 <script type="text/javascript">
-init_mathjax = function() {
-    if (window.MathJax) {
-        // MathJax loaded
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-            },
-            displayAlign: 'left', // Change this to 'center' to center equations.
-            "HTML-CSS": {
-                styles: {'.MathJax_Display': {"margin": 0}}
-            }
-        });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    },
+    displayAlign: 'left', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+        },
+    AuthorInit: function () {
+      MathJax.Hub.Register.StartupHook("Begin",function () {
+        MathJax.Hub.Queue(
+          ["Typeset",MathJax.Hub]
+        )
+      });
     }
-}
-init_mathjax();
+  };
 </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -11891,15 +11891,18 @@ jQuery(document).ready(function($) {
 <p>Certainly there is something to be learned even from past data, we just need to instill our models with a sense of time and recency.</p>
 <p>Enter random-walk processes. Ever since I learned about them in the <a href="https://blog.quantopian.com/probabilistic-programming-quant-finance/">stochastic volatility model</a> they have become one of my favorite modeling tricks. Basically, it allows you to turn every static model into a time-sensitive one.</p>
 <p>You can read more about the details of a random-walk priors <a href="http://pymc-devs.github.io/pymc3/notebooks/stochastic_volatility.html">here</a>, but the central idea is that, in any time-series model, rather than assuming a parameter to be constant over time, we allow it to change gradually, following a random walk. For example, take a logistic regression:</p>
-$$
+<p>$$
 Y_i = f(\beta X_i)
-$$<p>Where $f$ is the logistic function and $\beta$ is our learnable parameter. If we assume that our data is not iid and that $\beta$ is changing over time. We thus need a different $\beta$ for every $i$:</p>
-$$
+$$</p>
+<p>Where $f$ is the logistic function and $\beta$ is our learnable parameter. If we assume that our data is not iid and that $\beta$ is changing over time. We thus need a different $\beta$ for every $i$:</p>
+<p>$$
 Y_i = f(\beta_i X_i)
-$$<p>Of course, this will just overfit, so we need to constrain our $\beta_i$ somehow. We will assume that while $\beta_i$ is changing over time, it will do so rather gradually by placing a random-walk prior on it:</p>
-$$
+$$</p>
+<p>Of course, this will just overfit, so we need to constrain our $\beta_i$ somehow. We will assume that while $\beta_i$ is changing over time, it will do so rather gradually by placing a random-walk prior on it:</p>
+<p>$$
 \beta_t \sim \mathcal{N}(\beta_{t-1}, s^2)
-$$<p>So $\beta_t$ is allowed to only deviate a little bit (determined by the step-width $s$) form its previous value $\beta_{t-1}$. $s$ can be thought of as a stability parameter -- how fast is the world around you changing.</p>
+$$</p>
+<p>So $\beta_t$ is allowed to only deviate a little bit (determined by the step-width $s$) form its previous value $\beta_{t-1}$. $s$ can be thought of as a stability parameter -- how fast is the world around you changing.</p>
 <p>Let's first generate some toy data and then implement this model in <code>PyMC3</code>. We will then use this same trick in a <a href="twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">Neural Network</a> with hidden layers.</p>
 <p>If you would like a more complete introduction to Bayesian Deep Learning, see <a href="https://www.youtube.com/watch?v=S9d5nupP_7Q">my recent ODSC London talk</a>. This blog post takes things one step further so definitely read further below.</p>
 

@@ -11786,26 +11786,26 @@ div.collapseheader {
 }
 </style>
 
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 <script type="text/javascript">
-init_mathjax = function() {
-    if (window.MathJax) {
-        // MathJax loaded
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-            },
-            displayAlign: 'left', // Change this to 'center' to center equations.
-            "HTML-CSS": {
-                styles: {'.MathJax_Display': {"margin": 0}}
-            }
-        });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    },
+    displayAlign: 'left', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+        },
+    AuthorInit: function () {
+      MathJax.Hub.Register.StartupHook("Begin",function () {
+        MathJax.Hub.Queue(
+          ["Typeset",MathJax.Hub]
+        )
+      });
     }
-}
-init_mathjax();
+  };
 </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -11917,26 +11917,6 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
-        <a href="http://twiecki.github.com/blog/2014/01/02/visualizing-mcmc/">Animating MCMC with PyMC3 and Matplotlib</a>
-      </h1>
-      <p class="meta"><time datetime="2014-01-02T09:00:00-05:00" pubdate>Jan 02, 2014</time></p>
-</header>
-
-  <div class="entry-content"><p>Here's the deal: I used <a href="https://github.com/pymc-devs/pymc">PyMC3</a>,
-<a href="http://matplotlib.org/">matplotlib</a>, and <a href="http://jakevdp.github.io/">Jake Vanderplas'</a>
-<a href="https://github.com/jakevdp/JSAnimation">JSAnimation</a> to create
-javascript animations of three MCMC sampling algorithms --
-<a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings</a>, <a href="https://en.wikipedia.org/wiki/Slice_sampling">slice sampling</a> and <a href="http://arxiv.org/abs/1111.4246">NUTS</a>.</p>
-<p>Note that this post uses the html5 video tag which doesn't seem to
-work for Firefox but should work on any other browser.</p>
-<p>I like …</p></div>
-  <footer>
-    <a rel="full-article" href="http://twiecki.github.com/blog/2014/01/02/visualizing-mcmc/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
         <a href="http://twiecki.github.com/blog/2013/09/23/emcee-pymc/">Hammer time: Nailing the emcee ensemble sampler onto PyMC</a>
       </h1>
       <p class="meta"><time datetime="2013-09-23T09:00:00-04:00" pubdate>Sep 23, 2013</time></p>
@@ -12014,13 +11994,13 @@ work for Firefox but should work on any other browser.</p>
           <a href="http://twiecki.github.com/blog/2014/03/17/bayesian-glms-3/">The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3</a>
       </li>
       <li class="post">
-          <a href="http://twiecki.github.com/blog/2014/01/02/visualizing-mcmc/">Animating MCMC with PyMC3 and Matplotlib</a>
-      </li>
-      <li class="post">
           <a href="http://twiecki.github.com/blog/2013/09/23/emcee-pymc/">Hammer time: Nailing the emcee ensemble sampler onto PyMC</a>
       </li>
       <li class="post">
           <a href="http://twiecki.github.com/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Bayesian Robust Regression in PyMC3</a>
+      </li>
+      <li class="post">
+          <a href="http://twiecki.github.com/blog/2013/08/12/bayesian-glms-1/">The Inference Button: Bayesian GLMs made easy with PyMC3</a>
       </li>
     </ul>
   </section>

@@ -11786,26 +11786,26 @@ div.collapseheader {
 }
 </style>
 
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 <script type="text/javascript">
-init_mathjax = function() {
-    if (window.MathJax) {
-        // MathJax loaded
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-            },
-            displayAlign: 'left', // Change this to 'center' to center equations.
-            "HTML-CSS": {
-                styles: {'.MathJax_Display': {"margin": 0}}
-            }
-        });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    },
+    displayAlign: 'left', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+        },
+    AuthorInit: function () {
+      MathJax.Hub.Register.StartupHook("Begin",function () {
+        MathJax.Hub.Queue(
+          ["Typeset",MathJax.Hub]
+        )
+      });
     }
-}
-init_mathjax();
+  };
 </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -12033,13 +12033,16 @@ Here we'll investigate this differences and try to make predictions of radonleve
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Models">The Models<a class="anchor-link" href="#The-Models">&#182;</a></h2><h3 id="Pooling-of-measurements">Pooling of measurements<a class="anchor-link" href="#Pooling-of-measurements">&#182;</a></h3><p>Now you might say: "That's easy! I'll just pool all my data and estimate one big regression to asses the influence of a basement across all counties". In math-speak that model would be:</p>
-$$radon_{i, c} = \alpha + \beta*\text{floor}_{i, c} + \epsilon$$<p></p>
+<p>$$radon_{i, c} = \alpha + \beta*\text{floor}_{i, c} + \epsilon$$</p>
 <p>Where $i$ represents the measurement, $c$ the county and floor contains a yes (1) or no (0) to the question if the household has a basement. If you need a refresher on Linear Regressions in <code>PyMC</code>, check out my <a href="http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">previous blog post</a>. Critically, we are only estimating <em>one</em> intercept and <em>one</em> slope for all measurements over all counties.</p>
 <h3 id="Separate-regressions">Separate regressions<a class="anchor-link" href="#Separate-regressions">&#182;</a></h3><p>But what if we are interested whether different counties actually have different relationships (slope) and different base-rates of radon (intercept)? Then you might say "OK then, I'll just estimate $n$ (number of counties) different regresseions -- one for each county". In math-speak that model would be:</p>
-$$radon_{i, c} = \alpha_{c} + \beta_{c}*\text{floor}_{i, c} + \epsilon_c$$<p>Note that we added the subindex $c$ so we are estimating $n$ different $\alpha$s and $\beta$s -- one for each county.</p>
+<p>$$radon_{i, c} = \alpha_{c} + \beta_{c}*\text{floor}_{i, c} + \epsilon_c$$</p>
+<p>Note that we added the subindex $c$ so we are estimating $n$ different $\alpha$s and $\beta$s -- one for each county.</p>
 <p>This is the extreme opposite model, where above we assumed all counties are exactly the same, here we are saying that they share no similarities whatsoever which ultimately is also unsatisifying.</p>
 <h3 id="Hierarchical-Regression:-The-best-of-both-worlds">Hierarchical Regression: The best of both worlds<a class="anchor-link" href="#Hierarchical-Regression:-The-best-of-both-worlds">&#182;</a></h3><p>Fortunately there is a middle ground to both of these extreme views. Specifically, we may assume that while $\alpha$s and $\beta$s are different for each county, the coefficients all come from a common group distribution:</p>
-$$\alpha_{c} \sim \mathcal{N}(\mu_{\alpha}, \sigma_{\alpha}^2)$$$$\beta_{c} \sim \mathcal{N}(\mu_{\beta}, \sigma_{\beta}^2)$$<p>We thus assume the intercepts $\alpha$ and slopes $\beta$ to come from a normal distribution centered around their respective group mean $\mu$ with a certain standard deviation $\sigma^2$, the values (or rather posteriors) of which we also estimate. That's why this is called multilevel or hierarchical modeling.</p>
+<p>$$\alpha_{c} \sim \mathcal{N}(\mu_{\alpha}, \sigma_{\alpha}^2)$$
+$$\beta_{c} \sim \mathcal{N}(\mu_{\beta}, \sigma_{\beta}^2)$$</p>
+<p>We thus assume the intercepts $\alpha$ and slopes $\beta$ to come from a normal distribution centered around their respective group mean $\mu$ with a certain standard deviation $\sigma^2$, the values (or rather posteriors) of which we also estimate. That's why this is called multilevel or hierarchical modeling.</p>
 <p>How do we estimate such a complex model with all these parameters you might ask? Well, that's the beauty of Probabilistic Programming -- we just formulate the model we want and press our <a href="http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">Inference Button(TM)</a>.</p>
 <p>Note that the above is not a complete Bayesian model specification as we haven't defined priors or hyperpriors (i.e. priors for the group distribution, $\mu$ and $\sigma$). These will be used in the model implementation below but only distract here.</p>
 
