@@ -85,7 +85,14 @@
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Have you ever asked yourself: "Do I want to spend 2 days adjusting this analysis to run on the cluster and wait 2 days for the jobs to finish or do I just run it locally with no extra work and just wait a week."&lt;/p&gt;
-&lt;p&gt;If so, this blog post …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Thomas Wiecki</dc:creator><pubDate>Mon, 24 Feb 2014 09:00:00 -0500</pubDate><guid isPermaLink="false">tag:twiecki.github.com,2014-02-24:/blog/2014/02/24/ipython-nb-cluster/</guid><category>computation</category></item><item><title>Hammer time: Nailing the emcee ensemble sampler onto PyMC</title><link>https://twiecki.github.com/blog/2013/09/23/emcee-pymc/</link><description>&lt;p&gt;
+&lt;p&gt;If so, this blog post …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Thomas Wiecki</dc:creator><pubDate>Mon, 24 Feb 2014 09:00:00 -0500</pubDate><guid isPermaLink="false">tag:twiecki.github.com,2014-02-24:/blog/2014/02/24/ipython-nb-cluster/</guid><category>computation</category></item><item><title>Animating MCMC with PyMC3 and Matplotlib</title><link>https://twiecki.github.com/blog/2014/01/02/visualizing-mcmc/</link><description>&lt;p&gt;Here's the deal: I used &lt;a href="https://github.com/pymc-devs/pymc"&gt;PyMC3&lt;/a&gt;,
+&lt;a href="http://matplotlib.org/"&gt;matplotlib&lt;/a&gt;, and &lt;a href="http://jakevdp.github.io/"&gt;Jake Vanderplas'&lt;/a&gt;
+&lt;a href="https://github.com/jakevdp/JSAnimation"&gt;JSAnimation&lt;/a&gt; to create
+javascript animations of three MCMC sampling algorithms --
+&lt;a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm"&gt;Metropolis-Hastings&lt;/a&gt;, &lt;a href="https://en.wikipedia.org/wiki/Slice_sampling"&gt;slice sampling&lt;/a&gt; and &lt;a href="http://arxiv.org/abs/1111.4246"&gt;NUTS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Note that this post uses the html5 video tag which doesn't seem to
+work for Firefox but should work on any other browser.&lt;/p&gt;
+&lt;p&gt;I like …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Thomas Wiecki</dc:creator><pubDate>Thu, 02 Jan 2014 09:00:00 -0500</pubDate><guid isPermaLink="false">tag:twiecki.github.com,2014-01-02:/blog/2014/01/02/visualizing-mcmc/</guid><category>bayesian statistics</category></item><item><title>Hammer time: Nailing the emcee ensemble sampler onto PyMC</title><link>https://twiecki.github.com/blog/2013/09/23/emcee-pymc/</link><description>&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
