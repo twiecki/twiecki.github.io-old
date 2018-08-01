@@ -9,7 +9,7 @@
 /*!
   * Ender: open module JavaScript framework (client-lib)
   * copyright Dustin Diaz & Jacob Thornton 2011 (@ded @fat)
-  * http://ender.no.de
+  * https://ender.no.de
   * License MIT
   */
 !function(a){function d(a){var c=b[a]||window[a];if(!c)throw new Error("Requested module '"+a+"' has not been defined.");return c}function e(a,c){return b[a]=c}function f(a,b){for(var c in b)c!="noConflict"&&c!="_VERSION"&&(a[c]=b[c]);return a}function g(a,b,c){return h._select&&(typeof a=="string"||a.nodeName||a.length&&"item"in a||a==window)?(c=h._select(a,b),c.selector=a):c=isFinite(a.length)?a:[a],f(c,g)}function h(a,b){return g(a,b)}a.global=a;var b={},c=a.$;a.provide=e,a.require=d,f(h,{_VERSION:"0.3.4",fn:a.$&&a.$.fn||{},ender:function(a,b){f(b?g:h,a)},_select:function(a,b){return(b||document).querySelectorAll(a)}}),f(g,{forEach:function(a,b,c){for(c=0,l=this.length;c<l;++c)c in this&&a.call(b||this[c],this[c],c,this);return this},$:h}),h.noConflict=function(){return a.$=c,this},typeof module!="undefined"&&module.exports&&(module.exports=h),a.ender=a.$=a.ender||h}(this),!function(){var module={exports:{}},exports=module.exports;
@@ -25,7 +25,7 @@
     * https://github.com/fat/bean
     * MIT License
     * special thanks to:
-    * dean edwards: http://dean.edwards.name/
+    * dean edwards: https://dean.edwards.name/
     * dperini: https://github.com/dperini/nwevents
     * the entire mootools team: github.com/mootools/mootools-core
     */
