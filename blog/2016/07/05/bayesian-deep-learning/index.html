@@ -11888,8 +11888,8 @@ jQuery(document).ready(function($) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Recently, I blogged about <a href="http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">Bayesian Deep Learning with PyMC3</a> where I built a simple hand-coded Bayesian Neural Network and fit it on a toy data set. Today, we will build a more interesting model using <a href="https://lasagne.readthedocs.io/en/latest/">Lasagne</a>, a flexible <code>Theano</code> library for constructing various types of Neural Networks. As you may know, <a href="http://pymc-devs.github.io/pymc3/">PyMC3</a> is also using <code>Theano</code> so having the Artifical Neural Network (ANN) be built in <code>Lasagne</code>, but placing Bayesian priors on our parameters and then using variational inference (ADVI) in PyMC3 to estimate the model should be possible. To my delight, it is not only possible but also very straight forward.</p>
-<p>Below, I will first show how to bridge <code>PyMC3</code> and <code>Lasagne</code> to build a dense 2-layer ANN. We'll then use mini-batch ADVI to fit the model on the MNIST handwritten digit data set. Then, we will follow up on another idea expressed in my <a href="http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">last blog post</a> -- hierarchical ANNs. Finally, due to the power of <code>Lasagne</code>, we can just as easily build a Hierarchical Bayesian Convolution ANN with max-pooling layers to achieve 98% accuracy on MNIST.</p>
+<p>Recently, I blogged about <a href="https://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">Bayesian Deep Learning with PyMC3</a> where I built a simple hand-coded Bayesian Neural Network and fit it on a toy data set. Today, we will build a more interesting model using <a href="https://lasagne.readthedocs.io/en/latest/">Lasagne</a>, a flexible <code>Theano</code> library for constructing various types of Neural Networks. As you may know, <a href="http://pymc-devs.github.io/pymc3/">PyMC3</a> is also using <code>Theano</code> so having the Artifical Neural Network (ANN) be built in <code>Lasagne</code>, but placing Bayesian priors on our parameters and then using variational inference (ADVI) in PyMC3 to estimate the model should be possible. To my delight, it is not only possible but also very straight forward.</p>
+<p>Below, I will first show how to bridge <code>PyMC3</code> and <code>Lasagne</code> to build a dense 2-layer ANN. We'll then use mini-batch ADVI to fit the model on the MNIST handwritten digit data set. Then, we will follow up on another idea expressed in my <a href="https://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">last blog post</a> -- hierarchical ANNs. Finally, due to the power of <code>Lasagne</code>, we can just as easily build a Hierarchical Bayesian Convolution ANN with max-pooling layers to achieve 98% accuracy on MNIST.</p>
 <p>Most of the code used here is borrowed from the <a href="http://lasagne.readthedocs.io/en/latest/user/tutorial.html">Lasagne tutorial</a>.</p>
 
 </div>
@@ -12131,7 +12131,7 @@ jQuery(document).ready(function($) {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you compare what we have done so far to the previous blog post, it's apparent that using <code>Lasagne</code> is much more comfortable. We don't have to manually keep track of the shapes of the individual matrices, nor do we have to handle the underlying matrix math to make it all fit together.</p>
-<p>Next are some functions to set up mini-batch ADVI, you can find more information in the <a href="http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">prior blog post</a>.</p>
+<p>Next are some functions to set up mini-batch ADVI, you can find more information in the <a href="https://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">prior blog post</a>.</p>
 
 </div>
 </div>

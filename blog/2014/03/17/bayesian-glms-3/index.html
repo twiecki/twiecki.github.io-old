@@ -11892,8 +11892,8 @@ jQuery(document).ready(function($) {
 <p>Having multiple sets of measurements comes up all the time, in Psychology for example you test multiple subjects on the same task. You then might want to estimate a model that describes the behavior as a set of parameters relating to mental functioning. Often we are interested in individual differences of these parameters but also assume that subjects share similarities (being human and all). Software from our lab, <a href="http://ski.cog.brown.edu/hddm_docs/">HDDM</a>, allows hierarchical Bayesian estimation of a widely used decision making model but we will use a more classical example of hierarchical linear regression here to predict radon levels in houses.</p>
 <p>This is the 3rd blog post on the topic of Bayesian modeling in PyMC3, see here for the previous two:</p>
 <ul>
-<li><a href="http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">The Inference Button: Bayesian GLMs made easy with PyMC3</a></li>
-<li><a href="http://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Bayesian Robust Regression in PyMC3</a>  </li>
+<li><a href="https://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">The Inference Button: Bayesian GLMs made easy with PyMC3</a></li>
+<li><a href="https://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Bayesian Robust Regression in PyMC3</a>  </li>
 </ul>
 <h2 id="The-data-set">The data set<a class="anchor-link" href="#The-data-set">&#182;</a></h2><p>Gelman et al.'s (2007) radon dataset is a classic for hierarchical modeling. In this dataset the amount of the radioactive gas radon has been measured among different households in all county's of several states. Radon gas is known to be the highest cause of lung cancer in non-smokers. It is believed to be more strongly present in households containing a basement and to differ in amount present among types of soil.
 Here we'll investigate this differences and try to make predictions of radonlevels in different county's based on the county itself and the presence of a basement. In this example we'll look at Minnesota, a state that contains 85 county's in which different measurements are taken, ranging from 2 till 80 measurements per county.</p>
@@ -12046,7 +12046,7 @@ Here we'll investigate this differences and try to make predictions of radonleve
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Models">The Models<a class="anchor-link" href="#The-Models">&#182;</a></h2><h3 id="Pooling-of-measurements">Pooling of measurements<a class="anchor-link" href="#Pooling-of-measurements">&#182;</a></h3><p>Now you might say: "That's easy! I'll just pool all my data and estimate one big regression to asses the influence of a basement across all counties". In math-speak that model would be:</p>
 <p>$$radon_{i, c} = \alpha + \beta*\text{floor}_{i, c} + \epsilon$$</p>
-<p>Where $i$ represents the measurement, $c$ the county and floor contains a yes (1) or no (0) to the question if the household has a basement. If you need a refresher on Linear Regressions in <code>PyMC</code>, check out my <a href="http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">previous blog post</a>. Critically, we are only estimating <em>one</em> intercept and <em>one</em> slope for all measurements over all counties.</p>
+<p>Where $i$ represents the measurement, $c$ the county and floor contains a yes (1) or no (0) to the question if the household has a basement. If you need a refresher on Linear Regressions in <code>PyMC</code>, check out my <a href="https://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">previous blog post</a>. Critically, we are only estimating <em>one</em> intercept and <em>one</em> slope for all measurements over all counties.</p>
 <h3 id="Separate-regressions">Separate regressions<a class="anchor-link" href="#Separate-regressions">&#182;</a></h3><p>But what if we are interested whether different counties actually have different relationships (slope) and different base-rates of radon (intercept)? Then you might say "OK then, I'll just estimate $n$ (number of counties) different regresseions -- one for each county". In math-speak that model would be:</p>
 <p>$$radon_{i, c} = \alpha_{c} + \beta_{c}*\text{floor}_{i, c} + \epsilon_c$$</p>
 <p>Note that we added the subindex $c$ so we are estimating $n$ different $\alpha$s and $\beta$s -- one for each county.</p>
@@ -12055,7 +12055,7 @@ Here we'll investigate this differences and try to make predictions of radonleve
 <p>$$\alpha_{c} \sim \mathcal{N}(\mu_{\alpha}, \sigma_{\alpha}^2)$$
 $$\beta_{c} \sim \mathcal{N}(\mu_{\beta}, \sigma_{\beta}^2)$$</p>
 <p>We thus assume the intercepts $\alpha$ and slopes $\beta$ to come from a normal distribution centered around their respective group mean $\mu$ with a certain standard deviation $\sigma^2$, the values (or rather posteriors) of which we also estimate. That's why this is called multilevel or hierarchical modeling.</p>
-<p>How do we estimate such a complex model with all these parameters you might ask? Well, that's the beauty of Probabilistic Programming -- we just formulate the model we want and press our <a href="http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">Inference Button(TM)</a>.</p>
+<p>How do we estimate such a complex model with all these parameters you might ask? Well, that's the beauty of Probabilistic Programming -- we just formulate the model we want and press our <a href="https://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">Inference Button(TM)</a>.</p>
 <p>Note that the above is not a complete Bayesian model specification as we haven't defined priors or hyperpriors (i.e. priors for the group distribution, $\mu$ and $\sigma$). These will be used in the model implementation below but only distract here.</p>
 
 </div>
@@ -19605,7 +19605,7 @@ AElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="alert alert-warning">
 
-After writing this blog post I found out that the chains here (which look worse after I just re-ran them) are not properly converged, you can see that best for `sigma_beta` but also the warnings about "diverging samples" (which are also new in PyMC3). If you want to learn more about the problem and its solution, see my more recent blog post <a href='http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/'>"Why hierarchical models are awesome, tricky, and Bayesian"</a>.
+After writing this blog post I found out that the chains here (which look worse after I just re-ran them) are not properly converged, you can see that best for `sigma_beta` but also the warnings about "diverging samples" (which are also new in PyMC3). If you want to learn more about the problem and its solution, see my more recent blog post <a href='https://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/'>"Why hierarchical models are awesome, tricky, and Bayesian"</a>.
 
 </div>
 </div>
@@ -24153,8 +24153,8 @@ gg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h1><p>In this post, co-authored by Danne Elbers, we showed how a multi-level hierarchical Bayesian model gives the best of both worlds when we have multiple sets of measurements we expect to have similarity. The naive approach either pools all data together and ignores the individual differences, or treats each set as completely separate leading to noisy estimates as shown above. By placing a group distribution on the individual sets we can learn about each set and the group simultaneously. Probabilistic Programming in PyMC then makes Bayesian estimation of this model trivial.</p>
 <h2 id="References">References<a class="anchor-link" href="#References">&#182;</a></h2><ul>
-<li><a href="http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">The Inference Button: Bayesian GLMs made easy with PyMC3</a></li>
-<li><a href="http://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Bayesian Robust Regression in PyMC3</a>  </li>
+<li><a href="https://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">The Inference Button: Bayesian GLMs made easy with PyMC3</a></li>
+<li><a href="https://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Bayesian Robust Regression in PyMC3</a>  </li>
 <li><a href="https://github.com/fonnesbeck/multilevel_modeling/">Chris Fonnesbeck repo containing a more extensive analysis</a></li>
 <li><a href="http://doingbayesiandataanalysis.blogspot.com/2012/11/shrinkage-in-multi-level-hierarchical.html">Shrinkage in multi-level hierarchical models</a> by John Kruschke</li>
 <li>Gelman, A.; Carlin; Stern; and Rubin, D., 2007, "Replication data for: Bayesian Data Analysis, Second Edition", </li>

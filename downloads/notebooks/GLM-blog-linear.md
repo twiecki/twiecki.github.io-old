@@ -3,9 +3,9 @@ Author: Thomas Wiecki
 
 This tutorial appeared as a post in a small series on Bayesian GLMs on my blog:
 
-  1. [The Inference Button: Bayesian GLMs made easy with PyMC3](http://twiecki.github.com/blog/2013/08/12/bayesian-glms-1/)
-  2. [This world is far from Normal(ly distributed): Robust Regression in PyMC3](http://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/)
-  3. [The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3](http://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/)
+  1. [The Inference Button: Bayesian GLMs made easy with PyMC3](https://twiecki.github.com/blog/2013/08/12/bayesian-glms-1/)
+  2. [This world is far from Normal(ly distributed): Robust Regression in PyMC3](https://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/)
+  3. [The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3](https://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/)
   
 In this blog post I will talk about:
 
