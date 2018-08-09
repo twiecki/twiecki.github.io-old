@@ -12227,7 +12227,7 @@ jQuery(document).ready(function($) {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we loop over each category and fit a different BNN to each one. Each BNN has its own weights and there is no connection between them. But note that because we are Bayesians, we place priors on our weights. In this case these are standard normal priors that act as regularizers to keep our weights close to zero.
-<img src='bnn_flat.png'></p>
+<img src='https://twiecki.github.io/downloads/notebooks/bnn_flat.png'></p>
 
 </div>
 </div>
@@ -12401,7 +12401,7 @@ jQuery(document).ready(function($) {
 <h2 id="Hierarchical-Bayesian-Neural-Network">Hierarchical Bayesian Neural Network<a class="anchor-link" href="#Hierarchical-Bayesian-Neural-Network">&#182;</a></h2><p>Can we do better? You bet!</p>
 <p>It's actually quite straight-forward to turn this into one big hierarchical model for all categories, rather than many individual ones. Let's call the weight connecting neuron $i$ in layer 1 to neuron $j$ in layer 2 in category $c$ $w_{i, j, c}$ (I just omit the layer index for simplicity in notation). Rather than placing a fixed prior as we did above (i.e. $ w_{i, j, c} \sim \mathcal{N}(0, 1^2)$), we will assume that each weight comes from an overarching group distribution:
 $ w_{i, j, c} \sim \mathcal{N}(\mu_{i, j}, \sigma^2)$. The key is that we will estimate $\mu_{i, j}$ and $\sigma$ simultaneously from data.</p>
-<p><img src='bnn_hierarchical.png'></p>
+<p><img src='https://twiecki.github.io/downloads/notebooks/bnn_hierarchical.png'></p>
 <p>Why not allow for different $\sigma_{i,j}^2$ per connection you might ask? Mainly just to make our life simpler and because it works well enough.</p>
 <p>Note that we create a very rich model here. Every individual weight has its own hierarchical structure with a single group mean parameter and 16 per-category weights distributed around the group mean. While this creates a big amount of group distributions (as many as the flat NN had weights) there is no problem with this per-se, although it might be a bit unusual. One might argue that this model is quite complex and while that's true, in terms of degrees-of-freedom, this model is simpler than the unpooled one above (more on this below).</p>
 <p>As for the code, we stack weights along a 3rd dimenson to get separate weights for each group. That way, through the power of broadcasting, the linear algebra works out almost the same as before.</p>
