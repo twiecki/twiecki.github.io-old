@@ -11882,7 +11882,7 @@ jQuery(document).ready(function($) {
 <p>(c) 2018 by Thomas Wiecki</p>
 <p>Imagine you have a machine learning (ML) problem but only small data (<em>gasp</em>, yes, this does exist). This often happens when your data set is nested -- you might have many data points, but only few per category. For example, in ad-tech you may want predict how likely a user will buy a certain product. There could be thousands of products but you only have a small number of measurements (e.g. purchase decisions) per item. Likely, there will be similarities between each product category, but they will all have individual differences too.</p>
 <p>Using classic ML methods is unlikely to yield good results in this setting. Firstly, ML is happiest with lots of data. If you want to be fancy and use deep learning, that usually requires even more data to give good performance. Moreover, we can't really make use of the hierarchical structure (product-groupings) we know to be present in our data. So we can then either ignore it and try to learn one model for all categories which does not allow us to capture the differences between categories; or we can fit a ML model to each category separately but do not exploit the similarities between categories. (Technically, you could add the category as a feature and fit a single model but when I tried it on the data presented futher below it was at chance).</p>
-<p>Hierarchical Bayesian models work amazingly well in exactly this setting as they allow us to build a model that matches the hierarchical structure present in our data set. Check out my <a href="http://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/">previous blog post</a> for a refresher.</p>
+<p>Hierarchical Bayesian models work amazingly well in exactly this setting as they allow us to build a model that matches the hierarchical structure present in our data set. Check out my previous blog post <a href="https://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/">The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3</a> for a refresher.</p>
 <p>In this setting we could likely build a hierarchical logistic Bayesian model using PyMC3. However, what if our decision surface is actually more complex and a linear model would not give good performance?</p>
 <p>In this blog post I explore how we can take a Bayesian Neural Network (BNN) and turn it into a hierarchical one. Once we built this model we derive an informed prior from it that we can apply back to a simple, non-hierarchical BNN to get the same performance as the hierachical one.</p>
 <p>This problem also occurs in multi-task learning. Neural networks trained to play multiple atari games have a hard time because they tend to forget what they learned before fairly quickly. Hierarchical BNNs could provide an elegant solution to this problem by sharing the higher-order representations that are useful but still allowing every subnetwork to specialize in a single task.</p>
@@ -12099,7 +12099,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Classify-each-category-separately">Classify each category separately<a class="anchor-link" href="#Classify-each-category-separately">&#182;</a></h2><p>The code for the NN below is explained in <a href="https://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">this blog post</a>.</p>
+<h2 id="Classify-each-category-separately">Classify each category separately<a class="anchor-link" href="#Classify-each-category-separately">&#182;</a></h2><p>The code for the NN below is explained in my previous blog post on <a href="https://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">Bayesian Deep Learning</a>.</p>
 
 </div>
 </div>
@@ -12375,7 +12375,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That doens't look all that convincing. We know from the data generation process as well as from the <a href="https://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">previous blog posts</a> using this process that it give us a "Z"-shaped decision surface. So what happens is we don't have enough data to properly estimate the non-linearity in every category.</p>
+<p>That doens't look all that convincing. We know from the data generation process as well as from the previous blog post <a href="https://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">Bayesian Deep learning</a> using the same data set that it give us a "Z"-shaped decision surface. So what happens is we don't have enough data to properly estimate the non-linearity in every category.</p>
 
 </div>
 </div>
@@ -12724,7 +12724,7 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Interestingly, it seems that the specialization of the individual category sub-models is happening at the last layer where weights change most strongly from their group mean (as group variance is highest). I had assumed that this would happen at the first layer, based on what I found in <a href="https://twiecki.github.io/blog/2017/03/14/random-walk-deep-net/">this earlier blog post</a> where the first layer acted as a rotation-layer.</p>
+<p>Interestingly, it seems that the specialization of the individual category sub-models is happening at the last layer where weights change most strongly from their group mean (as group variance is highest). I had assumed that this would happen at the first layer, based on what I found in my earlier blog post <a href="https://twiecki.github.io/blog/2017/03/14/random-walk-deep-net/">Random-Walk Bayesian Deep Networks: Dealing with Non-Stationary Data</a> where the first layer acted as a rotation-layer.</p>
 <p>Another interesting property of hierarchical models reveals itself here. As the group standard deviation is small for the weights in layers 1 and 2, it means these weights will be close to their group mean, reducing the effective number of parameters (degrees of freedom) of this model. This is different from the separate models where no similarities could be exploited to reduce the effective number of parameters. So from this perspective, the hierarchical model is simpler than the sum of the separate ones above.</p>
 
 </div>
