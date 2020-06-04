@@ -12,7 +12,7 @@
 </script>
 
   <meta charset="utf-8">
-  <title>While My MCMC Gently Samples</title>
+  <title>While My MCMC Gently Samples - misc category</title>
   <meta name="author" content="Thomas Wiecki">
 
   <link href="https://twiecki.io/atom.xml" type="application/atom+xml" rel="alternate"
@@ -11876,12 +11876,7 @@ jQuery(document).ready(function($) {
       <p class="meta"><time datetime="2015-11-10T10:00:00-05:00" pubdate>Nov 10, 2015</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>When I give talks about probabilistic programming and Bayesian statistics, I usually gloss over the details of how inference is actually performed, treating it as a black box essentially. The beauty of probabilistic programming is that you actually don't <em>have</em> to understand how the inference works in order to build …</p></div></div></div></p></div>
+  <div class="entry-content"><p>{% notebook MCMC-sampling-for-dummies.ipynb %}</p></div>
   <footer>
     <a rel="full-article" href="https://twiecki.io/blog/2015/11/10/mcmc-sampling/">Read On &crarr;</a>
   </footer>
@@ -11894,13 +11889,7 @@ jQuery(document).ready(function($) {
       <p class="meta"><time datetime="2014-11-18T10:00:00-05:00" pubdate>Nov 18, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Python has an extremely rich and healthy ecosystem of data science tools. Unfortunately, to outsiders this ecosystem can look like a jungle (cue snake joke). In this blog post I will provide a step-by-step guide to venturing into this PyData jungle.</p>
-<p>What's wrong with the many lists of PyData packages …</p></div></div></div></p></div>
+  <div class="entry-content"><p>{% notebook Python_Data_Science.ipynb %}</p></div>
   <footer>
     <a rel="full-article" href="https://twiecki.io/blog/2014/11/18/python-for-data-science/">Read On &crarr;</a>
   </footer>
@@ -11913,21 +11902,8 @@ jQuery(document).ready(function($) {
       <p class="meta"><time datetime="2014-03-17T09:00:00-04:00" pubdate>Mar 17, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="The-best-of-both-worlds:-Hierarchical-Linear-Regression-in-PyMC3">The best of both worlds: Hierarchical Linear Regression in PyMC3<a class="anchor-link" href="#The-best-of-both-worlds:-Hierarchical-Linear-Regression-in-PyMC3">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Today's blog post is co-written by my student <a href="http://www.linkedin.com/pub/danne-elbers/69/3a2/7ba">Danne Elbers</a> who is doing her masters thesis with me on computational psychiatry using Bayesian methods. This post also borrows heavily from a <a href="http://nbviewer.ipython.org/github/fonnesbeck/multilevel_modeling/blob/master/multilevel_modeling.ipynb?create=1">Notebook</a> by <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/ChrisFonnesbeck">Chris Fonnesbeck</a>.</p>
-<p>The power of Bayesian modelling …</p></div></div></div></p></div>
+  <div class="entry-content"><p>{% notebook GLM_hierarchical.ipynb %}
+~</p></div>
   <footer>
     <a rel="full-article" href="https://twiecki.io/blog/2014/03/17/bayesian-glms-3/">Read On &crarr;</a>
   </footer>
@@ -11940,13 +11916,7 @@ jQuery(document).ready(function($) {
       <p class="meta"><time datetime="2014-02-24T09:00:00-05:00" pubdate>Feb 24, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Have you ever asked yourself: "Do I want to spend 2 days adjusting this analysis to run on the cluster and wait 2 days for the jobs to finish or do I just run it locally with no extra work and just wait a week."</p>
-<p>If so, this blog post …</p></div></div></div></p></div>
+  <div class="entry-content"><p>{% notebook ipython_parallel_cluster.ipynb %}</p></div>
   <footer>
     <a rel="full-article" href="https://twiecki.io/blog/2014/02/24/ipython-nb-cluster/">Read On &crarr;</a>
   </footer>
@@ -11979,13 +11949,8 @@ the samplers work and what problems they can run into.</p>
       <p class="meta"><time datetime="2013-09-23T09:00:00-04:00" pubdate>Sep 23, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>tl;dr: I hacked the <a href="http://dan.iel.fm/emcee/"><code>emcee</code>--The MCMC-Hammer</a> ensemble sampler to work on <code>PyMC</code> models.</p>
-<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">&#182;</a></h2><p><a href="http://pymc-devs.github.io/pymc/"><code>PyMC</code></a> is an awesome Python module to perform Bayesian inference. It allows for flexible model creation and has basic MCMC samplers like <a href="http://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings</a>. The upcoming PyMC3 will feature much fancier samplers like <a href="http://en.wikipedia.org/wiki/Hybrid_Monte_Carlo">Hamiltonian-Monte Carlo …</a></p></div></div></div></p></div>
+  <div class="entry-content"><p>{% notebook emcee.ipynb %}
+~</p></div>
   <footer>
     <a rel="full-article" href="https://twiecki.io/blog/2013/09/23/emcee-pymc/">Read On &crarr;</a>
   </footer>
@@ -11998,17 +11963,8 @@ the samplers work and what problems they can run into.</p>
       <p class="meta"><time datetime="2013-08-27T12:00:00-04:00" pubdate>Aug 27, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Author: Thomas Wiecki</p>
-<p>This tutorial first appeard as a post in small series on Bayesian GLMs on my blog:</p>
-<ol>
-<li><a href="https://twiecki.github.com/blog/2013/08/12/bayesian-glms-1/">The Inference Button: Bayesian GLMs made easy with PyMC3</a></li>
-<li><a href="https://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Robust Regression in PyMC3</a></li>
-<li><a href="https://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/">The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3 …</a></li></ol></div></div></div></p></div>
+  <div class="entry-content"><p>{% notebook GLM-blog-robust.ipynb %}
+~</p></div>
   <footer>
     <a rel="full-article" href="https://twiecki.io/blog/2013/08/27/bayesian-glms-2/">Read On &crarr;</a>
   </footer>
@@ -12021,17 +11977,8 @@ the samplers work and what problems they can run into.</p>
       <p class="meta"><time datetime="2013-08-12T07:00:00-04:00" pubdate>Aug 12, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Author: Thomas Wiecki</p>
-<p>This tutorial appeared as a post in a small series on Bayesian GLMs on my blog:</p>
-<ol>
-<li><a href="https://twiecki.github.com/blog/2013/08/12/bayesian-glms-1/">The Inference Button: Bayesian GLMs made easy with PyMC3</a></li>
-<li><a href="https://twiecki.github.io/blog/2013/08/27/bayesian-glms-2/">This world is far from Normal(ly distributed): Robust Regression in PyMC3</a></li>
-<li><a href="https://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/">The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3 …</a></li></ol></div></div></div></p></div>
+  <div class="entry-content"><p>{% notebook GLM-blog-linear.ipynb %}
+~</p></div>
   <footer>
     <a rel="full-article" href="https://twiecki.io/blog/2013/08/12/bayesian-glms-1/">Read On &crarr;</a>
   </footer>
