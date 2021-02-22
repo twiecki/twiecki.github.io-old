@@ -13195,6 +13195,94 @@ jQuery(document).ready(function($) {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-43aebf13d3c9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_line_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;matplotlib&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;inline&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> 
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> pymc3 <span class="ansi-green-fg">as</span> pm
+<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">import</span> theano<span class="ansi-blue-fg">.</span>tensor <span class="ansi-green-fg">as</span> tt
+<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">import</span> pandas <span class="ansi-green-fg">as</span> pd
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span> __set_compiler_flags<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     40</span> 
+<span class="ansi-green-fg">---&gt; 41</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> pymc3 <span class="ansi-green-fg">import</span> gp<span class="ansi-blue-fg">,</span> ode<span class="ansi-blue-fg">,</span> sampling
+<span class="ansi-green-intense-fg ansi-bold">     42</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>backends <span class="ansi-green-fg">import</span> load_trace<span class="ansi-blue-fg">,</span> save_trace
+<span class="ansi-green-intense-fg ansi-bold">     43</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>backends<span class="ansi-blue-fg">.</span>tracetab <span class="ansi-green-fg">import</span> <span class="ansi-blue-fg">*</span>
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/gp/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span> 
+<span class="ansi-green-intense-fg ansi-bold">     15</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>gp <span class="ansi-green-fg">import</span> cov<span class="ansi-blue-fg">,</span> mean<span class="ansi-blue-fg">,</span> util
+<span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>gp<span class="ansi-blue-fg">.</span>gp <span class="ansi-green-fg">import</span> TP<span class="ansi-blue-fg">,</span> Latent<span class="ansi-blue-fg">,</span> LatentKron<span class="ansi-blue-fg">,</span> Marginal<span class="ansi-blue-fg">,</span> MarginalKron<span class="ansi-blue-fg">,</span> MarginalSparse
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/gp/gp.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     23</span> <span class="ansi-green-fg">import</span> pymc3 <span class="ansi-green-fg">as</span> pm
+<span class="ansi-green-intense-fg ansi-bold">     24</span> 
+<span class="ansi-green-fg">---&gt; 25</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>distributions <span class="ansi-green-fg">import</span> draw_values
+<span class="ansi-green-intense-fg ansi-bold">     26</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>gp<span class="ansi-blue-fg">.</span>cov <span class="ansi-green-fg">import</span> Constant<span class="ansi-blue-fg">,</span> Covariance
+<span class="ansi-green-intense-fg ansi-bold">     27</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>gp<span class="ansi-blue-fg">.</span>mean <span class="ansi-green-fg">import</span> Zero
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/distributions/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     13</span> <span class="ansi-red-fg">#   limitations under the License.</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span> 
+<span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>distributions <span class="ansi-green-fg">import</span> shape_utils<span class="ansi-blue-fg">,</span> timeseries<span class="ansi-blue-fg">,</span> transforms
+<span class="ansi-green-intense-fg ansi-bold">     16</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>distributions<span class="ansi-blue-fg">.</span>bart <span class="ansi-green-fg">import</span> BART
+<span class="ansi-green-intense-fg ansi-bold">     17</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>distributions<span class="ansi-blue-fg">.</span>bound <span class="ansi-green-fg">import</span> Bound
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/distributions/timeseries.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     21</span> <span class="ansi-green-fg">from</span> theano <span class="ansi-green-fg">import</span> scan
+<span class="ansi-green-intense-fg ansi-bold">     22</span> 
+<span class="ansi-green-fg">---&gt; 23</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>distributions <span class="ansi-green-fg">import</span> distribution<span class="ansi-blue-fg">,</span> multivariate
+<span class="ansi-green-intense-fg ansi-bold">     24</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>distributions<span class="ansi-blue-fg">.</span>continuous <span class="ansi-green-fg">import</span> Flat<span class="ansi-blue-fg">,</span> Normal<span class="ansi-blue-fg">,</span> get_tau_sigma
+<span class="ansi-green-intense-fg ansi-bold">     25</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>distributions<span class="ansi-blue-fg">.</span>shape_utils <span class="ansi-green-fg">import</span> to_tuple
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/distributions/distribution.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     40</span> )
+<span class="ansi-green-intense-fg ansi-bold">     41</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>memoize <span class="ansi-green-fg">import</span> memoize
+<span class="ansi-green-fg">---&gt; 42</span><span class="ansi-red-fg"> from pymc3.model import (
+</span><span class="ansi-green-intense-fg ansi-bold">     43</span>     ContextMeta<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     44</span>     FreeRV<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/model.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     35</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>blocking <span class="ansi-green-fg">import</span> ArrayOrdering<span class="ansi-blue-fg">,</span> DictToArrayBijection
+<span class="ansi-green-intense-fg ansi-bold">     36</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>exceptions <span class="ansi-green-fg">import</span> ImputationWarning
+<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>math <span class="ansi-green-fg">import</span> flatten_list
+<span class="ansi-green-intense-fg ansi-bold">     38</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>memoize <span class="ansi-green-fg">import</span> WithMemoization<span class="ansi-blue-fg">,</span> memoize
+<span class="ansi-green-intense-fg ansi-bold">     39</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>theanof <span class="ansi-green-fg">import</span> floatX<span class="ansi-blue-fg">,</span> generator<span class="ansi-blue-fg">,</span> gradient<span class="ansi-blue-fg">,</span> hessian<span class="ansi-blue-fg">,</span> inputvars
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/math.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     74</span> <span class="ansi-green-fg">from</span> theano<span class="ansi-blue-fg">.</span>tensor<span class="ansi-blue-fg">.</span>nnet <span class="ansi-green-fg">import</span> sigmoid
+<span class="ansi-green-intense-fg ansi-bold">     75</span> 
+<span class="ansi-green-fg">---&gt; 76</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>theanof <span class="ansi-green-fg">import</span> floatX<span class="ansi-blue-fg">,</span> ix_<span class="ansi-blue-fg">,</span> largest_common_dtype
+<span class="ansi-green-intense-fg ansi-bold">     77</span> 
+<span class="ansi-green-intense-fg ansi-bold">     78</span> <span class="ansi-red-fg"># pylint: enable=unused-import</span>
+
+<span class="ansi-green-fg">~/projects/pymc/pymc3/theanof.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     20</span> <span class="ansi-green-fg">from</span> theano<span class="ansi-blue-fg">.</span>gof <span class="ansi-green-fg">import</span> Op
+<span class="ansi-green-intense-fg ansi-bold">     21</span> <span class="ansi-green-fg">from</span> theano<span class="ansi-blue-fg">.</span>gof<span class="ansi-blue-fg">.</span>graph <span class="ansi-green-fg">import</span> inputs
+<span class="ansi-green-fg">---&gt; 22</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> theano<span class="ansi-blue-fg">.</span>sandbox<span class="ansi-blue-fg">.</span>rng_mrg <span class="ansi-green-fg">import</span> MRG_RandomStreams
+<span class="ansi-green-intense-fg ansi-bold">     23</span> 
+<span class="ansi-green-intense-fg ansi-bold">     24</span> <span class="ansi-green-fg">from</span> pymc3<span class="ansi-blue-fg">.</span>blocking <span class="ansi-green-fg">import</span> ArrayOrdering
+
+<span class="ansi-red-fg">ImportError</span>: cannot import name &#39;MRG_RandomStreams&#39; from &#39;theano.sandbox.rng_mrg&#39; (/Users/twiecki/projects/Theano-PyMC/theano/sandbox/rng_mrg.py)</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13207,7 +13295,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">SUPPLIER_YIELD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">8</span><span class="p">])</span> <span class="c1"># unknown</span>
@@ -13231,7 +13319,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_OBS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
@@ -13244,7 +13332,7 @@ jQuery(document).ready(function($) {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -13259,40 +13347,10 @@ jQuery(document).ready(function($) {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[4]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[array([0.978235  , 0.98946102, 0.99035051, 0.83762708, 0.66130327,
-        0.98785994, 0.85327018, 0.8500779 , 0.99913878, 0.89881072,
-        0.8175994 , 0.95181804, 0.91545214, 0.87137954, 0.96166603,
-        0.99033823, 0.96319861, 0.94124979, 0.96555922, 0.96606356,
-        0.92723444, 0.97736913, 0.86764773, 0.81749131, 0.98597604,
-        0.97980665, 0.77295709, 0.9584931 , 0.88875261, 0.99585613]),
- array([0.51788973, 0.67831661, 0.64888304, 0.61595363, 0.08634205,
-        0.72543455, 0.51883833, 0.5454235 , 0.30357696, 0.21743938,
-        0.54628383, 0.68559965, 0.28827533, 0.79246239, 0.65810975,
-        0.69059483, 0.59297579, 0.85482231, 0.38115298, 0.8296909 ]),
- array([0.89241857, 0.9000698 ])]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -13303,42 +13361,6 @@ jQuery(document).ready(function($) {
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
-width=629
-height=207
->
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -13369,7 +13391,7 @@ height=207
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">SALES_PRICE</span> <span class="o">=</span> <span class="mi">500</span> 
@@ -13391,7 +13413,7 @@ height=207
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@np</span><span class="o">.</span><span class="n">vectorize</span>
@@ -13413,6 +13435,33 @@ height=207
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-2-813cbb571692&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-blue-fg">@</span>np<span class="ansi-blue-fg">.</span>vectorize
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">def</span> loss<span class="ansi-blue-fg">(</span>in_stock<span class="ansi-blue-fg">,</span> demand<span class="ansi-blue-fg">,</span> buy_price<span class="ansi-blue-fg">,</span> sales_price<span class="ansi-blue-fg">=</span>SALES_PRICE<span class="ansi-blue-fg">,</span> holding_cost<span class="ansi-blue-fg">=</span>HOLDING_COST<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     <span class="ansi-red-fg"># How much do we earn per launch</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>     margin <span class="ansi-blue-fg">=</span> sales_price <span class="ansi-blue-fg">-</span> buy_price
+<span class="ansi-green-intense-fg ansi-bold">      5</span>     <span class="ansi-red-fg"># Do we have more in stock than demanded?</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;np&#39; is not defined</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13580,10 +13629,38 @@ height=263
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Estimating-yield-with-a-Bayesian-model">Estimating yield with a Bayesian model<a class="anchor-link" href="#Estimating-yield-with-a-Bayesian-model">&#182;</a></h2><p>Let's use <code>PyMC3000</code> (which has remarkably similar syntax to <a href="http://pymc.io"><code>PyMC3</code></a>) to build a model to estimate the yield of every engine supplier:</p>
+<h2 id="Estimating-yield-with-a-Bayesian-model">Estimating yield with a Bayesian model<a class="anchor-link" href="#Estimating-yield-with-a-Bayesian-model">&#182;</a></h2><p>Let's use <a href="http://pymc.io"><code>PyMC3</code></a> to build a model to estimate the yield of every engine supplier:</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+
+<span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
+    <span class="c1"># Parameters and their priors</span>
+    <span class="n">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;α&#39;</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span>
+    <span class="n">β</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;β&#39;</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span>
+
+    <span class="c1"># Likelihood - how our data is distributed</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="s1">&#39;supplier_yield_obs&#39;</span><span class="p">,</span> 
+                  <span class="n">alpha</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">β</span><span class="p">,</span> 
+                  <span class="n">observed</span><span class="o">=</span><span class="n">supplier_data</span><span class="p">)</span>
+    
+    <span class="c1"># Infer parameters</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+    <span class="c1"># Create predictions</span>
+    <span class="n">scenarios</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_posterior_predictive</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14420,6 +14497,9 @@ height=263
         <h1>Recent Posts</h1>
         <ul id="recent_posts">
                 <li class="post">
+                    <a href="https://twiecki.io/blog/2021/02/23/intro_pymc_labs/">Introducing PyMC Labs</a>
+                </li>
+                <li class="post">
                     <a href="https://twiecki.io/blog/2019/03/15/computational_psychiatry_thesis/">Computational Psychiatry: Combining multiple levels of analysis to understand brain disorders - PhD thesis</a>
                 </li>
                 <li class="post">
@@ -14430,9 +14510,6 @@ height=263
                 </li>
                 <li class="post">
                     <a href="https://twiecki.io/blog/2018/08/13/hierarchical_bayesian_neural_network/">Hierarchical Bayesian Neural Networks with Informative Priors</a>
-                </li>
-                <li class="post">
-                    <a href="https://twiecki.io/blog/2018/05/03/copulas/">An intuitive, visual guide to copulas</a>
                 </li>
         </ul>
     </section>

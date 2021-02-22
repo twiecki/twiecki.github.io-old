@@ -5,7 +5,7 @@
 <html class="no-js" lang="en"><!--<![endif]-->
     <head>
 <meta charset="utf-8">
-<title>Animating MCMC with PyMC3 and Matplotlib &mdash; While My MCMC Gently Samples</title>
+<title>Introducing PyMC Labs &mdash; While My MCMC Gently Samples</title>
 <meta name="author" content="Thomas Wiecki">
 
         <link href="https://twiecki.io/atom.xml" type="application/atom+xml" rel="alternate"
@@ -13154,86 +13154,103 @@ jQuery(document).ready(function($) {
     <div>
         <article class="hentry" role="article">
 <header>
-        <h1 class="entry-title">Animating MCMC with PyMC3 and Matplotlib</h1>
+        <h1 class="entry-title">Introducing PyMC Labs</h1>
     <p class="meta">
-<time datetime="2014-01-02T09:00:00-05:00" pubdate>Jan 02, 2014</time>    </p>
+<time datetime="2021-02-23T10:00:00-05:00" pubdate>Feb 23, 2021</time>    </p>
 </header>
 
-    <div class="entry-content"><p>Here's the deal: I used <a href="https://github.com/pymc-devs/pymc">PyMC3</a>,
-<a href="http://matplotlib.org/">matplotlib</a>, and <a href="http://jakevdp.github.io/">Jake Vanderplas'</a>
-<a href="https://github.com/jakevdp/JSAnimation">JSAnimation</a> to create
-javascript animations of three MCMC sampling algorithms --
-<a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings</a>, <a href="https://en.wikipedia.org/wiki/Slice_sampling">slice sampling</a> and <a href="http://arxiv.org/abs/1111.4246">NUTS</a>.</p>
-<p>I like visualizations because they provide a good intuition for how
-the samplers work and what problems they can run into.</p>
-<p>You can download the full notebook <a href="https://rawgithub.com/twiecki/WhileMyMCMCGentlySamples/master/content/downloads/notebooks/sample_animation.ipynb">here</a> or <a href="http://nbviewer.ipython.org/github/twiecki/WhileMyMCMCGentlySamples/blob/master/content/downloads/notebooks/sample_animation.ipynb?create=1">view it in your browser</a>. Note that for this post I used
-video embedding due to the size of the animations if they are not
-compressed. The notebook contains code for both.</p>
-<p>The model is a simple linear model as explained in my <a href="https://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/">previous blog post on Bayesian GLMs</a>. Essentially,
-I generated some data and estimate <code>intercept</code> and <code>slope</code>. In the
-lower left corner is the <em>joint</em> posterior while the plot above shows
-the <em>trace</em> of the <em>marginal</em> posterior of the <code>intercept</code> while the
-right plot shows the trace of the <em>marginal</em> posterior of the <code>slope</code> parameter. Each
-point represents a sample drawn from the posterior. At 3 quarters of the way I added a thousand samples to show that they all sample from the posterior eventually.</p>
-<h2>Metropolis-Hastings</h2>
-<p>First, lets see how our old-school Metropolis-Hastings (MH)
-performs. The code uses matplotlib's handy <code>FuncAnimation</code> (see
-<a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">here</a>
-for a tutorial), my own animation code, and the <a href="https://github.com/pymc-devs/pymc/pull/433">recently merged iterative sampling function <code>iter_sample()</code></a>.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/23zAmLruZVA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="entry-content"><p>After I left Quantopian in 2020, something interesting happened: various companies contacted me inquiring about
+consulting to help them with their PyMC3 models.</p>
+<p>Usually, I don't hear how people are using <a href="https://docs.pymc.io/">PyMC3</a> -- they mostly show up on
+<a href="https://github.com/pymc-devs/pymc3">GitHub</a> or <a href="https://discourse.pymc.io/">Discourse</a> when something isn't working
+right. So, hearing about all these really cool projects was quite exciting. However, I couldn't possibly take all of
+these projects on by myself.</p>
+<p>Thus, it was time to assemble a team of the most badass Bayesian modelers the world had ever seen -- the Bayesian
+Avengers, if you will. Fortunately, I did not have to venture far, as PyMC3 had already attracted exactly these types
+of people.</p>
+<div class="text-center py-5">
+    <iframe src="https://giphy.com/embed/5cZbRBLhW4tc4" width="480" height="257"
+    frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</div>
 
-<p>As you can see, there is quite some correlation between <code>intercept</code>
-and <code>slope</code> -- if we believe in a higher intercept we must also
-believe in a lower slope (which makes geometrical sense if you think
-how lines could fit through the point clouds). This often makes it
-difficult for the MCMC algorithm to converge (i.e. sample from the
-true posterior) as we wittness here.</p>
-<p>The reason MH does not do anything at first is that MH proposes huge
-jumps that are not accepted because they are way outside the
-posterior. PyMC then tunes the proposal distribution so that smaller
-jumps are proposed. These smaller jumps however lead to the
-random-walk behavior you can see which makes sampling inefficient (for
-a good intuition about this "drunken walk", see
-<a href="http://healthyalgorithms.com/2010/03/12/a-useful-metaphor-for-explaining-mcmc/">here</a>).</p>
-<h2>Slice sampling</h2>
-<p>Lets see how Slice sampling fares.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5mMwKG7rbZQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<p>This brings me to the Big Announcement: For the last few months, we have quietly been building
+<a href="https://pymc-labs.io">PyMC Labs</a>, a Bayesian modeling consultancy.
+<a href="https://www.pymc-labs.io/team/">We have an amazing team</a> consisting of three neuroscience PhDs, mathematicians,
+social scientists, a SpaceX rocket scientist, and the host of the famous
+<a href="https://www.learnbayesstats.com/">‘Learning Bayesian Statistics’ podcast</a>. All of us are united in our mission:</p>
+<blockquote class="blockquote text-center">
+    <p class="mb-0">Saving the world with Bayesian modeling</p>
+    <footer class="blockquote-footer">Someone famous who 💙 Bayesian stats</footer>
+</blockquote>
 
-<p>As you can see, slice sampling does a much better job. For one thing,
-there are no rejections (which is a property of the algorithm). But
-there's still room for improvement. At the core, slice sampling always
-updates one random variable at a time while keeping all others
-constant. This property leads to small steps being taken (imagine
-trying to move along a diagonal area on the chess board with a Rook)
-and makes sampling from correlated posteriors inefficient.</p>
-<h2>NUTS (Hamiltonian Monte Carlo)</h2>
-<p>NUTS on the other hand is a newer gradient-based sampler that operates
-on the joint posterior. Correlations are not a problem because this
-sampler can actually move diagonally as well (more like the Queen). As
-you can see, it does a much better job at exploring the posterior and
-takes much wider steps.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Fq_hlq8AfYo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-<p>Mesmerizing, ain't it?</p>
-<p>What surprised me about the slice sampling is that if I looked at the
-individual traces (top and right plot) only, I'd say they hadn't
-converged. But rather it seems that while the step-size is small,
-averaging samples over a longer run should still provide meaningful
-inference.</p>
-<h2>Where to go from here</h2>
-<p>I was initially setting out to get real-time plotting while sampling
-into PyMC. What I've shown here just creates an animation after
-sampling has finished. Unfortunately, I don't think it's currently
-possible to do so in the IPython Notebook as it requires embedding of
-HTML for which we need the finished product. If anyone has an idea
-here that might be a very interesting extension.</p>
-<h2>Further reading</h2>
-<ul>
-<li><a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">Jake's tutorial on matplotlib animations</a></li>
-<li><a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">Jake's blog post on embedding JS animations in the notebook</a></li>
-<li><a href="http://healthyalgorithms.com/2011/01/28/mcmc-in-python-pymc-step-methods-and-their-pitfalls/">Abe Flaxman's much prettier videos on MCMC</a>
-  (Would be nice to replace my crappy plotting code with his -- PRs welcome.)</li>
-</ul></div>
+<p>Does this sound a bit grandiose? Probably. Is this true? I firmly believe it is. There are so many important problems
+the world faces today -- from climate change to COVID19, from education to poverty -- and Bayesian modeling can play a
+critical role in solving these problems. Let me explain why.</p>
+<h2>It is already doing it</h2>
+<p>I would not have imagined it when I started contributing to PyMC, but the science PyMC3 has directly enabled ranges
+from <a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C5&amp;q=pymc3+climate&amp;btnG=">climate science</a> and biology to
+astronomy and zoology, and everything in between.</p>
+<p>For instance, it was used to predict the spread of COVID19 in a recent
+<a href="https://science.sciencemag.org/content/369/6500/eabb9789.full">Science paper</a>,
+as well as <a href="https://rtlive.de/global.html">track the reproduction factor in real-time</a>.
+In both cases, the benefit of PyMC3 was its ease-of-use and the ability to integrate scientific domain knowledge and
+get honest uncertainty estimation in a highly volatile and uncertain situation.</p>
+<p>Now I know you’re very observant and I hear you thinking: “wait a minute, those benefits of Bayesian modeling sound
+quite general, so why would they be only valid for epidemiology?”. And indeed they aren’t! For similar benefits,
+PyMC3 is also used to <a href="https://github.com/exoplanet-dev/exoplanet">find planets outside of our solar system</a>
+and <a href="https://github.com/hvasbath/beat">detect earthquakes</a>. One of my coworkers here at PyMC Labs uses it for
+<a href="https://share.streamlit.io/alexandorra/pollsposition_website/main/gp-popularity-app.py">electoral and political forecasting</a>,
+because polls are noisy, scarce and need to be completed by domain knowledge -- one of the perfect settings for
+Bayesian inference!</p>
+<p>With all of this, at the time of writing, the <a href="https://peerj.com/articles/cs-55/">PyMC3 paper</a> has been cited over 930
+times and is in the top 10 most cited articles of the entire PeerJ journal.</p>
+<h2>Solving Business Problems</h2>
+<p>Beyond scientific research, I find that PyMC3 is the perfect tool to also solve various business problems.
+And indeed it’s already successfully used in production at companies as big and diverse as SpaceX, Roche,
+Netflix, Deliveroo and HelloFresh.</p>
+<p>This diversity means that the <a href="https://www.pymc-labs.io/clients/">PyMC Labs team intervenes</a> to, for instance,
+<a href="https://support.everysk.com/hc/en-us/articles/1500001040721-Private-Investments">build complex models from the latest finance research</a>;
+optimize supply chains for food delivery; build software from top to bottom for pharmaceutical applications;
+speed up and extend models for the farm tech industry; train and enhance any data science team’s Bayesian stats
+capacities, etc.</p>
+<h2>Prediction vs Inference</h2>
+<p>As data science has exploded in the last decade I have always been surprised by the over-emphasis on prediction-focused
+machine learning. For far too long, it has been hailed as the solution to most of our data science problems.</p>
+<p>I believe that the potential of this is way overblown. Not because it doesn't work -- algorithms like deep nets or
+random forests are extremely powerful at extracting non-linear predictive patterns from large data sets -- but rather
+because most data science problems are not simple <em>prediction</em> but rather <em>inference</em> problems.</p>
+<p>In addition, we often already have a lot of knowledge about our problem: knowledge of certain structure in our data
+set (like nested data, that some variables relate to some but not other parameters) and knowledge of which range of
+values we expect certain parameters of our model to fall into. Prediction-focused ML does not allow us to include any
+of this information, that's why it requires so much data.</p>
+<p>With Bayesian statistics, we don't have to learn everything from data as we translate this knowledge into a custom model.
+Thus, rather than changing our problem to fit the solution, as is common with ML, we can tailor the solution to best
+solve the problem at hand. I like to compare this with Playmobil vs Lego:</p>
+<p><img alt="" src="https://www.pymc-labs.io/blog-posts/saving-the-world/playlego.jpeg"></p>
+<p>Playmobil just gives you a single toy you can't change while Lego (i.e Bayes here) gives you building blocks to build
+the toy you actually want. In Bayesian modeling, these building blocks are probability distributions.</p>
+<p>But how do you do this in practice? This is where PyMC3 comes in, as it allows you to specify your models as Python
+code and automatically estimate it without requiring manual mathematical derivations. Due to recent theoretical and
+technological advances, this also runs quickly and scales to complex models on large(ish) data sets.</p>
+<h2>Serving our mission</h2>
+<p>So how do we best make progress on our mission?</p>
+<p>First, we will continue to make PyMC3 the best, most user-friendly and scalable Bayesian modeling package out there.
+We are well set up to do this, having a friendly API, a huge user-base, and a large developer team of over 20 active
+members. With our renewed focus on
+<a href="https://pymc-devs.medium.com/the-future-of-pymc3-or-theano-is-dead-long-live-theano-d8005f8a0e9b">PyMC3 on Theano with a JAX backend</a>
+all our resources will go towards this goal.</p>
+<p>Second, our new PyMC consultancy will support this endeavour. It allows us to directly help clients use these powerful,
+customizable methods to solve their business problems, thereby increasing adoption and recognition.
+As a great side effect, these client projects also help us find things that need to be fixed, improved or optimized
+in PyMC3, thereby lifting all (Bayesian) boats instead of just the happy fews’.</p>
+<p>So far, this has been an incredibly rewarding and exhilarating journey. Even though it is still early, we are learning
+a lot about which areas Bayesian modeling is particularly well suited for but also what would make PyMC3 even better.
+Without spoiling a future blog post that will go into more detail about what we have learned applying these methods,
+the best use-cases include (but aren’t limited to) <strong>incorporating domain knowledge, building bespoke models and
+quantifying uncertainty around estimates</strong>.</p>
+<p><em>Sounds familiar? If you or your company has a problem for which prediction-based ML is not a good fit, I'd love to talk
+to you at <a href="mailto:thomas.wiecki@pymc-labs.io">thomas.wiecki@pymc-labs.io</a>. This is just the beginning and
+I hope you will join us on this marvelous journey.</em></p></div>
 
 
             <footer>
@@ -13242,13 +13259,13 @@ here that might be a very interesting extension.</p>
     <span class="fn">
             Thomas Wiecki
     </span>
-</span><time datetime="2014-01-02T09:00:00-05:00" pubdate>Jan 02, 2014</time><span class="categories">
+</span><time datetime="2021-02-23T10:00:00-05:00" pubdate>Feb 23, 2021</time><span class="categories">
         <a href="https://twiecki.io/category/misc.html">misc</a>
 </span>
 
 
 <div class="sharing">
-  <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://twiecki.io/blog/2014/01/02/visualizing-mcmc/" data-via="twiecki" data-counturl="https://twiecki.io/blog/2014/01/02/visualizing-mcmc/" >Tweet</a>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://twiecki.io/blog/2021/02/23/intro_pymc_labs/" data-via="twiecki" data-counturl="https://twiecki.io/blog/2021/02/23/intro_pymc_labs/" >Tweet</a>
 </div>            </footer>
         </article>
 
@@ -13310,9 +13327,9 @@ here that might be a very interesting extension.</p>
 </script>
   <script type="text/javascript">
     var disqus_shortname = 'twiecki';
-    var disqus_identifier = '/blog/2014/01/02/visualizing-mcmc/';
-    var disqus_url = 'https://twiecki.io/blog/2014/01/02/visualizing-mcmc/';
-    var disqus_title = 'Animating MCMC with PyMC3 and Matplotlib';
+    var disqus_identifier = '/blog/2021/02/23/intro_pymc_labs/';
+    var disqus_url = 'https://twiecki.io/blog/2021/02/23/intro_pymc_labs/';
+    var disqus_title = 'Introducing PyMC Labs';
     (function() {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
       dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
