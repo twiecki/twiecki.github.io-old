@@ -1,0 +1,85 @@
+<html><head>
+    <title>PyMC Example</title>
+    <meta charset="iso-8859-1">
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-gl-2.4.2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.4.2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.4.2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-2.4.2.min.js"></script>
+
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <py-env>
+- bokeh
+- micropymc
+        </py-env>
+
+        <py-title>PyMC in the browser using PyScript</py-title>
+
+        <pre><code class="python">import pymc as pm
+with pm.Model() as model:
+    conversion_rate = pm.Beta("conversion_rate", 5, 5)
+    obs = pm.Binomial("obs", p=conversion_rate, n=n, observed=k)
+    
+    idata = pm.sample()</code></pre>
+
+        <py-box widths="1/7;2/7;1/7;2/7;1/7">
+          <py-title>n=</py-title>
+          <py-inputbox id="input_box_n">10</py-inputbox>
+        <py-title>k=</py-title>
+         <py-inputbox id="input_box_k">5</py-inputbox>
+        <py-button id="sample-btn" label="Sample!">
+def on_click(evt):
+    k = Element('input_box_k').element.value
+    if k == "":
+        k = 5
+    n = Element('input_box_n').element.value
+    if n == "":
+        n = 10
+    run_model(n=n, k=k)
+          </py-button>
+        </py-box>
+
+    <div id="myplot"></div>
+
+    <py-script id="main">
+import json
+from js import Bokeh, JSON
+from bokeh.embed import json_item
+from bokeh.plotting import figure
+
+import arviz as az
+az.rcParams["plot.backend"] = "bokeh"
+
+import pymc as pm
+
+def run_model(n=10, k=5):
+    with pm.Model() as model:
+        conversion_rate = pm.Beta("conversion_rate", 5, 5)
+        obs = pm.Binomial("obs", p=conversion_rate, n=n, observed=k)
+        idata = pm.sample(chains=1, progressbar=False)
+
+    p = figure(plot_width=600, plot_height=600, toolbar_location="below")
+    az.plot_posterior(idata, var_names=["conversion_rate"], show=False, ax=p)
+    p_json = json.dumps(json_item(p, "myplot"))
+    Bokeh.embed.embed_item(JSON.parse(p_json))
+    </py-script>
+
+    <script>
+        window.addEventListener('load', function() {
+            let input_box_n = document.querySelector("#input_box_n")
+            input_box_n.value = "10"
+            let input_box_k = document.querySelector("#input_box_k")
+            input_box_k.value = "5"
+        })
+      </script>
+</body>
+</html>
