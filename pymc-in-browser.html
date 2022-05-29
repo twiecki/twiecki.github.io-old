@@ -44,7 +44,7 @@ For a full explanation, see <a href src="https://www.pymc-labs.io/blog-posts/pym
           <py-inputbox id="input_box_n">10</py-inputbox>
         <py-title>k=</py-title>
          <py-inputbox id="input_box_k">5</py-inputbox>
-        <py-button id="sample-btn" label="Sample!">
+        <button id="sample-btn" label="Sample!">
 
 from pyodide import create_proxy
 
@@ -57,7 +57,7 @@ def on_click(evt):
     if n == "":
         n = 10
     run_model(n=n, k=k)
-          </py-button>
+          </button>
         </py-box>
 
 Sampling will take a couple of seconds. 
