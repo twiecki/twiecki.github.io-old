@@ -46,6 +46,9 @@ For a full explanation, see <a href src="https://www.pymc-labs.io/blog-posts/pym
          <py-inputbox id="input_box_k">5</py-inputbox>
         <py-button id="sample-btn" label="Sample!">
 
+from pyodide import create_proxy
+
+@create_proxy
 def on_click(evt):
     k = Element('input_box_k').element.value
     if k == "":
